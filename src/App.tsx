@@ -4,6 +4,7 @@ import { ThemeProvider } from "@emotion/react";
 import GlobalStyle from "./styles/GlobalStyle";
 import theme from "./styles/theme";
 import { MainPage } from "./pages";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<MainPage />}></Route>
         </Routes>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );
