@@ -2,6 +2,7 @@ import PostItem from "../../components/PostItem";
 import mainImg from "../../assets/mainImg.svg";
 import FilterList from "../../components/FilterList";
 import * as S from "./MainPage.style";
+import RecentMatch from "src/components/RecentMatch";
 const MainPage = () => {
   return (
     <>
@@ -18,6 +19,9 @@ const MainPage = () => {
           <S.MoreButton>더보기</S.MoreButton>
         </S.Content>
         <S.Title>최근 성사된 매치</S.Title>
+        <S.Content>
+          <RecentMatch />
+        </S.Content>
       </S.Container>
     </>
   );
