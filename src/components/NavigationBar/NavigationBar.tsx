@@ -5,11 +5,11 @@ const NavigationBar = () => {
     <>
       <S.Continer>
         <S.ItemContainer>
-          <S.Logo to="/hello">
+          <S.Logo to="/">
             <img src={logo} alt="" />
           </S.Logo>
           <S.Nav>
-            <S.NavItem to="/">공고 보기</S.NavItem>
+            <S.NavItem to="/postList">공고 보기</S.NavItem>
             <S.NavItem to="/">팀 만들기</S.NavItem>
             <S.NavItem to="/">글쓰기</S.NavItem>
             <S.NavItem to="/">채팅방</S.NavItem>
