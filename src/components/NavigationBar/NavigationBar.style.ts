@@ -2,6 +2,8 @@ import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 
 export const Continer = styled.div`
+  display: flex;
+  justify-content: space-between;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -37,4 +39,31 @@ export const NavItem = styled(Link)`
   color: black;
   font-size: 18px;
   font-weight: 600;
+`;
+
+export const UserButton = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+`;
+
+export const Button = styled.button`
+  width: 100px;
+  height: 40px;
+  margin-right: 20px;
+  border: none;
+  background-color: #ffd400;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 10px;
+`;
+
+export const ModalContainer = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
