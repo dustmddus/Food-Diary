@@ -10,7 +10,7 @@ const NavigationBar = () => {
           </S.Logo>
           <S.Nav>
             <S.NavItem to="/postList">공고 보기</S.NavItem>
-            <S.NavItem to="/">팀 만들기</S.NavItem>
+            <S.NavItem to="/team/create">팀 만들기</S.NavItem>
             <S.NavItem to="/post/create">글쓰기</S.NavItem>
             <S.NavItem to="/">채팅방</S.NavItem>
           </S.Nav>
