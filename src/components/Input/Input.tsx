@@ -1,5 +1,3 @@
-const Input = () => {
-  
-};
+const Input = () => {};
 
 export default Input;

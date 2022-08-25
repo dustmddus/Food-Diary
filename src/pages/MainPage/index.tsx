@@ -18,6 +18,7 @@ const MainPage = () => {
         <S.Content>
           {dummyData.data.values.map((i: Values) => (
             <PostItem
+              id={i.id}
               key={i.id}
               title={i.title}
               distance={i.distance}

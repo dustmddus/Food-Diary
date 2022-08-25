@@ -7,10 +7,12 @@ import { Values } from "./types";
 const PostListPage = () => {
   return (
     <S.Container>
+      <S.Input placeholder="검색어를 입력하세요" />
       <FilterList />
       <S.ListContainer>
         {dummyData.data.values.map((i: Values) => (
           <PostItem
+            id={i.id}
             key={i.id}
             title={i.title}
             distance={i.distance}

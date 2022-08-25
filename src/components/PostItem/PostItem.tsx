@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import * as S from "./PostItem.style";
 
 interface Props {
+  id: number;
   title: string;
   distance: number;
   date: string;
@@ -8,9 +10,22 @@ interface Props {
   matchType: string;
 }
 
-const PostItem = ({ title, distance, date, category, matchType }: Props) => {
+const PostItem = ({
+  id,
+  title,
+  distance,
+  date,
+  category,
+  matchType,
+}: Props) => {
+  const navigate = useNavigate();
+
+  const handleOnClickItem = (id: number) => {
+    navigate(`/postDetail/${id}`);
+  };
+
   return (
-    <S.Container>
+    <S.Container onClick={() => handleOnClickItem(id)}>
       <S.Description>
         <S.Title>{title}</S.Title>
         <S.Info>

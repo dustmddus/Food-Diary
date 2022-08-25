@@ -15,7 +15,7 @@ export const dummyData = {
         createdAt: "2022.05.10", // 글 작성 일자
       },
       {
-        id: 1,
+        id: 2,
         title: "농구 같이 하실 분",
         category: "농구",
         matchType: "개인전", //개인전 or 팀전
@@ -28,7 +28,7 @@ export const dummyData = {
         createdAt: "2022.05.10", // 글 작성 일자
       },
       {
-        id: 1,
+        id: 3,
         title: "농구 같이 하실 분",
         category: "농구",
         matchType: "개인전", //개인전 or 팀전
@@ -41,7 +41,7 @@ export const dummyData = {
         createdAt: "2022.05.10", // 글 작성 일자
       },
       {
-        id: 1,
+        id: 4,
         title: "농구 같이 하실 분",
         category: "농구",
         matchType: "개인전", //개인전 or 팀전
@@ -54,7 +54,7 @@ export const dummyData = {
         createdAt: "2022.05.10", // 글 작성 일자
       },
       {
-        id: 1,
+        id: 5,
         title: "농구 같이 하실 분",
         category: "농구",
         matchType: "개인전", //개인전 or 팀전
