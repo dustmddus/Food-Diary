@@ -6,13 +6,12 @@ import RecentMatch from "src/components/RecentMatch";
 import { Link } from "react-router-dom";
 import { dummyData } from "../PostListPage/dummyData";
 import { Values } from "../PostListPage/types";
-import LoginForm from "src/components/LoginForm";
+import SignUpForm from "src/components/SignUpForm";
 const MainPage = () => {
   return (
     <>
       <S.Container>
         <S.ImgWrapper>
-          <LoginForm />
           <img src={mainImg} width="600px" />
         </S.ImgWrapper>
         <FilterList />

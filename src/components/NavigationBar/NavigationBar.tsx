@@ -3,6 +3,7 @@ import * as S from "./NavigationBar.style";
 import logo from "../../assets/textLogo.svg";
 import Modal from "../Modal";
 import LoginForm from "../LoginForm";
+import SignUpForm from "../SignUpForm";
 const NavigationBar = () => {
   const [isOpenLoginModal, setOpenLoginModal] = useState<boolean>(false);
   const [isOpenSignUpModal, setOpenSignUpModal] = useState<boolean>(false);
@@ -38,7 +39,9 @@ const NavigationBar = () => {
         )}
         {isOpenSignUpModal && (
           <S.ModalContainer>
-            <Modal onClickToggleModal={onClickSignUpButton}>king</Modal>
+            <Modal onClickToggleModal={onClickSignUpButton}>
+              <SignUpForm />
+            </Modal>
           </S.ModalContainer>
         )}
 
