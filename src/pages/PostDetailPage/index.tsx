@@ -1,9 +1,14 @@
 import * as S from "./PostDetailPage.style";
 import dummyData from "./dummyData";
 import Avatar from "../../assets/avatar.svg";
+import { Link, useLocation } from "react-router-dom";
 
 const PostDetailPage = () => {
   const { data } = dummyData;
+  const location = useLocation();
+  const postId = location.pathname.split("/")[3];
+  console.log(postId);
+
   return (
     <S.Container>
       <S.Status>
@@ -17,10 +22,12 @@ const PostDetailPage = () => {
             <S.ItemWrapper>
               <S.ItemTitle>팀명</S.ItemTitle>
               <S.Item>
-                <S.TeamInfo>
-                  <img src={Avatar} width="25px" />
-                  <S.Item>{data.team.name}</S.Item>
-                </S.TeamInfo>
+                <Link to={`/team/detail/${data.team.id}`}>
+                  <S.TeamInfo>
+                    <img src={Avatar} width="25px" />
+                    <S.Item>{data.team.name}</S.Item>
+                  </S.TeamInfo>
+                </Link>
               </S.Item>
             </S.ItemWrapper>
             <S.ItemWrapper>

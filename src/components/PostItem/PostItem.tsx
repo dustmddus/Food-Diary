@@ -21,7 +21,7 @@ const PostItem = ({
   const navigate = useNavigate();
 
   const handleOnClickItem = (id: number) => {
-    navigate(`/postDetail/${id}`);
+    navigate(`/post/detail/${id}`);
   };
 
   return (
