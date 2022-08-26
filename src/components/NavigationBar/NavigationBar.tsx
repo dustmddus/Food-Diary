@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import * as S from "./NavigationBar.style";
 import logo from "../../assets/textLogo.svg";
 import Modal from "../Modal";
+import LoginForm from "../LoginForm";
 const NavigationBar = () => {
   const [isOpenLoginModal, setOpenLoginModal] = useState<boolean>(false);
   const [isOpenSignUpModal, setOpenSignUpModal] = useState<boolean>(false);
@@ -30,7 +31,9 @@ const NavigationBar = () => {
         </S.ItemContainer>
         {isOpenLoginModal && (
           <S.ModalContainer>
-            <Modal onClickToggleModal={onClickLoginButton}>hello</Modal>
+            <Modal onClickToggleModal={onClickLoginButton}>
+              <LoginForm />
+            </Modal>
           </S.ModalContainer>
         )}
         {isOpenSignUpModal && (
