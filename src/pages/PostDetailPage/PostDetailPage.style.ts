@@ -82,9 +82,10 @@ export const Content = styled.div`
   margin: 0 auto;
   margin-top: 50px;
   margin-bottom: 80px;
-  width: 1000px;
+  width: 900px;
   height: 500px;
-  background-color: #fff2b4;
+  background-color: #ffff;
+  border: 1px solid black;
   border-radius: 20px;
   padding: 60px;
   font-size: 20px;
@@ -98,7 +99,9 @@ export const Button = styled.button`
   font-size: 25px;
   border: none;
   border-radius: 20px;
-  width: 1000px;
+  width: 900px;
   height: 90px;
   background-color: #89cffd;
+  color: white;
+  font-weight: 600;
 `;
