@@ -10,8 +10,6 @@ export const CoverImg = styled.div`
 `;
 export const ProfileImg = styled.img`
   width: 130px;
-
-  /* transform: translate(-50%, 0%); */
 `;
 
 export const Info = styled.div`
@@ -23,7 +21,7 @@ export const Description = styled.div`
   display: flex;
   position: absolute;
   top: 300px;
-  left: 100px;
+  left: 300px;
 `;
 
 export const Title = styled.div`
@@ -48,7 +46,7 @@ export const ProfileWrapper = styled.div`
 `;
 
 export const EditBtn = styled.button`
-  margin-left: 900px;
+  margin-left: 600px;
   margin-top: 26px;
   width: 120px;
   border: none;
@@ -74,4 +72,45 @@ export const Content = styled.div`
 export const MatchHistory = styled.div`
   margin-left: 300px;
   margin-top: 80px;
+`;
+
+export const MatchReview = styled.div`
+  margin-left: 300px;
+  margin-top: 80px;
+`;
+
+export const ReviewWrapper = styled.div`
+  display: flex;
+  margin-top: 60px;
+  margin-left: 120px;
+`;
+
+export const ReviewItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 200px;
+`;
+
+export const ReviewImg = styled.img`
+  width: 100px;
+  margin-bottom: 30px;
+`;
+
+export const MemberList = styled.div`
+  margin-left: 300px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+`;
+
+export const MemberProfile = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+  margin-left: 150px;
+`;
+
+export const MemberImg = styled.img`
+  width: "80px";
+  margin-right: 20px;
 `;

@@ -11,6 +11,12 @@ export const dummyData = {
         profileImageUrl: "string",
         role: "LEADER",
       },
+      {
+        userId: 1,
+        nickname: "삼승연",
+        profileImageUrl: "string",
+        role: "LEADER",
+      },
     ],
     matchRecord: {
       win: 3,
