@@ -55,6 +55,7 @@ const TeamDetailPage = () => {
         <Text size="24px" weight="600">
           팀원
         </Text>
+        <S.AddMember>팀원 추가</S.AddMember>
         {data.members.map((i) => (
           <S.MemberProfile>
             <S.MemberImg src={Avatar} width="80px" />

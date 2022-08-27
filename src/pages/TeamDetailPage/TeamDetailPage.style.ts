@@ -21,7 +21,7 @@ export const Description = styled.div`
   display: flex;
   position: absolute;
   top: 300px;
-  left: 300px;
+  left: 350px;
 `;
 
 export const Title = styled.div`
@@ -46,7 +46,7 @@ export const ProfileWrapper = styled.div`
 `;
 
 export const EditBtn = styled.button`
-  margin-left: 600px;
+  margin-left: 450px;
   margin-top: 26px;
   width: 120px;
   border: none;
@@ -70,12 +70,12 @@ export const Content = styled.div`
 `;
 
 export const MatchHistory = styled.div`
-  margin-left: 300px;
+  margin-left: 350px;
   margin-top: 80px;
 `;
 
 export const MatchReview = styled.div`
-  margin-left: 300px;
+  margin-left: 350px;
   margin-top: 80px;
 `;
 
@@ -98,7 +98,7 @@ export const ReviewImg = styled.img`
 `;
 
 export const MemberList = styled.div`
-  margin-left: 300px;
+  margin-left: 350px;
   margin-top: 100px;
   margin-bottom: 100px;
 `;
@@ -113,4 +113,17 @@ export const MemberProfile = styled.div`
 export const MemberImg = styled.img`
   width: "80px";
   margin-right: 20px;
+`;
+
+export const AddMember = styled.button`
+  margin-left: 650px;
+  width: 120px;
+  border: none;
+  border-radius: 5px;
+  background-color: #89cffd;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px;
+  height: 40px;
 `;
