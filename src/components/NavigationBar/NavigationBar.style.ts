@@ -33,12 +33,26 @@ export const Nav = styled.nav`
   margin-left: 60px;
 `;
 
+export const Item = styled.div`
+  padding: 12px 10px;
+  font-size: 18px;
+  font-weight: 600;
+  &:hover {
+    background-color: #ffec91;
+    border-radius: 20px;
+  }
+`;
+
 export const NavItem = styled(Link)`
   padding: 12px 10px;
   text-decoration: none;
   color: black;
   font-size: 18px;
   font-weight: 600;
+  &:hover {
+    background-color: #ffec91;
+    border-radius: 20px;
+  }
 `;
 
 export const UserButton = styled.div`

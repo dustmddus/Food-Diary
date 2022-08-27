@@ -4,9 +4,16 @@ import logo from "../../assets/textLogo.svg";
 import Modal from "../Modal";
 import LoginForm from "../LoginForm";
 import SignUpForm from "../SignUpForm";
+import Distance from "../Distance";
+import DistanceModal from "../DistanceModal";
 const NavigationBar = () => {
+  const [isOpenDistanceModal, setOpenDistanceModal] = useState<boolean>(false);
   const [isOpenLoginModal, setOpenLoginModal] = useState<boolean>(false);
   const [isOpenSignUpModal, setOpenSignUpModal] = useState<boolean>(false);
+
+  const setDistance = useCallback(() => {
+    setOpenDistanceModal(!isOpenDistanceModal);
+  }, [isOpenDistanceModal]);
 
   const onClickLoginButton = useCallback(() => {
     setOpenLoginModal(!isOpenLoginModal);
@@ -24,12 +31,18 @@ const NavigationBar = () => {
             <img src={logo} alt="" />
           </S.Logo>
           <S.Nav>
+            <S.Item onClick={setDistance}>내 동네 설정</S.Item>
             <S.NavItem to="/postList">공고 보기</S.NavItem>
             <S.NavItem to="/team/create">팀 만들기</S.NavItem>
             <S.NavItem to="/post/create">글쓰기</S.NavItem>
             <S.NavItem to="/">채팅방</S.NavItem>
           </S.Nav>
         </S.ItemContainer>
+        {isOpenDistanceModal && (
+          <DistanceModal onClickToggleModal={setDistance}>
+            <Distance />
+          </DistanceModal>
+        )}
         {isOpenLoginModal && (
           <S.ModalContainer>
             <Modal onClickToggleModal={onClickLoginButton}>

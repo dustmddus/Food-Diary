@@ -4,14 +4,27 @@ import * as S from "./PostCreatePage.style";
 import Dropdown from "src/components/Dropdown";
 import { Category, TeamList } from "./dummyData";
 
+interface Team {
+  id: number;
+  sportsCategory: string;
+  name: string;
+  logoImageUrl: string | null;
+  memberCount: number;
+}
+
+const teamDropdownItem = (teams: Team[]) =>
+  teams.map(({ id, name, sportsCategory, memberCount }, idx) => ({
+    id: idx,
+    text: name,
+    value: { id, sportsCategory, memberCount },
+  }));
+
 const PostCreatePage = () => {
   const [type, setType] = useState("");
 
   const handleRadioButton = (e: React.ChangeEvent<HTMLInputElement>) => {
     setType(e.target.value);
   };
-
-  const teamCategory = Category;
 
   return (
     <S.Container>
@@ -41,7 +54,10 @@ const PostCreatePage = () => {
       )}
       {type === "team" && (
         <>
-          <Dropdown valueList={TeamList} placeholder="팀 선택" />
+          <Dropdown
+            valueList={teamDropdownItem(TeamList.data)}
+            placeholder="팀 선택"
+          />
           <S.Input placeholder="인원" />
         </>
       )}

@@ -50,7 +50,9 @@ const PostDetailPage = () => {
       </S.Status>
       <S.Line />
       <S.Content>{data.content}</S.Content>
-      <S.Button>신청하기</S.Button>
+      <Link to="/proposal">
+        <S.Button>신청하기</S.Button>
+      </Link>
     </S.Container>
   );
 };
