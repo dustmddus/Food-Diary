@@ -22,7 +22,7 @@ const PostDetailPage = () => {
             <S.ItemWrapper>
               <S.ItemTitle>팀명</S.ItemTitle>
               <S.Item>
-                <Link to={`/team/detail/${data.team.id}`}>
+                <Link to={`/team/profile/${data.team.id}`}>
                   <S.TeamInfo>
                     <img src={Avatar} width="25px" />
                     <S.Item>{data.team.name}</S.Item>

@@ -1,14 +1,14 @@
-import * as S from "./TeamDetailPage.style";
+import * as S from "./PersonalDetailPage.style";
 import Avatar from "../../assets/avatar.svg";
 import Best from "../../assets/best.svg";
 import Good from "../../assets/good.svg";
 import Bad from "../../assets/bad.svg";
-import { dummyData } from "./dummyData";
+import { dummyData, MatchData } from "./dummyData";
 import Text from "src/components/Text";
 import MatchResultChart from "src/components/MatchResultChart";
 import { Link } from "react-router-dom";
 
-const TeamDetailPage = () => {
+const PersonalDetailPage = () => {
   const { data } = dummyData;
   return (
     <S.Container>
@@ -17,51 +17,49 @@ const TeamDetailPage = () => {
         <S.ProfileImg src={Avatar} />
         <S.ProfileWrapper>
           <S.Info>
-            <S.Title>{data.name}</S.Title>
-            <S.CategoryBadge>{data.sportsCategory}</S.CategoryBadge>
+            <S.Title>{data.nickname}</S.Title>
+            <S.LocalName>{data.localName}</S.LocalName>
           </S.Info>
           <S.EditBtn>프로필 수정</S.EditBtn>
         </S.ProfileWrapper>
       </S.Description>
-      <S.Content>{data.description}</S.Content>
       <S.MatchHistory>
         <Text size="24px" weight="600">
-          팀 전적
+          나의 전적
         </Text>
-        <MatchResultChart matchResult={data.matchRecord} />
+        <MatchResultChart matchResult={MatchData.data} />
       </S.MatchHistory>
       <S.MatchReview>
         <Text size="24px" weight="600">
-          팀 후기
+          나의 후기
         </Text>
         <S.ReviewWrapper>
           <S.ReviewItem>
             <S.ReviewImg src={Best} />
             <Text size="20px">최고예요</Text>
-            <Text size="20px">{data.matchReview.bestCount}</Text>
+            <Text size="20px">{data.review.bestCount}</Text>
           </S.ReviewItem>
           <S.ReviewItem>
             <S.ReviewImg src={Good} />
             <Text size="20px">좋아요</Text>
-            <Text size="20px">{data.matchReview.likeCount}</Text>
+            <Text size="20px">{data.review.likeCount}</Text>
           </S.ReviewItem>
           <S.ReviewItem>
             <S.ReviewImg src={Bad} />
             <Text size="20px">별로예요</Text>
-            <Text size="20px">{data.matchReview.dislikeCount}</Text>
+            <Text size="20px">{data.review.dislikeCount}</Text>
           </S.ReviewItem>
         </S.ReviewWrapper>
       </S.MatchReview>
       <S.MemberList>
         <Text size="24px" weight="600">
-          팀원
+          팀 목록
         </Text>
-        <S.AddMember>팀원 추가</S.AddMember>
-        {data.members.map((i) => (
-          <Link to={`/personal/profile/${i.userId}`}>
+        {data.teams.map((i) => (
+          <Link to={`/team/profile/${i.id}`}>
             <S.MemberProfile>
               <S.MemberImg src={Avatar} width="80px" />
-              <Text size="20px">{i.nickname}</Text>
+              <Text size="20px">{i.name}</Text>
             </S.MemberProfile>
           </Link>
         ))}
@@ -70,4 +68,4 @@ const TeamDetailPage = () => {
   );
 };
 
-export default TeamDetailPage;
+export default PersonalDetailPage;

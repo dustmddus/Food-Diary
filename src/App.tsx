@@ -7,6 +7,7 @@ import PostDetailPage from "./pages/PostDetailPage";
 import PostCreatePage from "./pages/PostCreatePage";
 import TeamCreatePage from "./pages/TeamCreatePage";
 import TeamDetailPage from "./pages/TeamDetailPage";
+import PersonalDetailPage from "./pages/PersonalDetailPage";
 
 const App = () => {
   return (
@@ -18,7 +19,8 @@ const App = () => {
         <Route path="/post/detail/:ID" element={<PostDetailPage />} />
         <Route path="/post/create" element={<PostCreatePage />} />
         <Route path="/team/create" element={<TeamCreatePage />} />
-        <Route path="/team/detail/:ID" element={<TeamDetailPage />} />
+        <Route path="/team/profile/:ID" element={<TeamDetailPage />} />
+        <Route path="/personal/profile/:ID" element={<PersonalDetailPage />} />
 
         {/* <Route path="/team/detail/:ID" element={<TeamDetailPage />} /> */}
       </Routes>
