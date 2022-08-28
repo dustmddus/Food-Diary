@@ -1,17 +1,53 @@
 import FilterButton from "../FilterButton";
-import * as S from "./FilterList.style";
+import { SPORTS_CATEGORY } from "src/constants/category";
+import { useState } from "react";
+import { Response } from "./type";
+import { useRecoilState } from "recoil";
+import { sportsCategory } from "src/recoil/category";
 
 const FilterList = () => {
+  const [state, setState] = useState<Response>({
+    cursor: {
+      createdAt: "",
+      id: null,
+    },
+    values: [],
+    hasNext: false,
+    category: "",
+  });
+
+  const [category, setCategory] = useRecoilState(sportsCategory);
+
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    const { dataset } = e.target as HTMLElement;
+    const { value } = dataset;
+    if (category === value) {
+      setCategory("");
+      setState({
+        ...state,
+        category: "",
+      });
+    } else {
+      setCategory(value as string);
+      setState({
+        ...state,
+        category: value as string,
+      });
+    }
+  };
   return (
-    <S.Container>
-      <FilterButton>축구</FilterButton>
-      <FilterButton>야구</FilterButton>
-      <FilterButton>농구</FilterButton>
-      <FilterButton>배드민턴</FilterButton>
-      <FilterButton>테니스</FilterButton>
-      <FilterButton>볼링</FilterButton>
-      <FilterButton>기타</FilterButton>
-    </S.Container>
+    <div>
+      {SPORTS_CATEGORY.map((item) => (
+        <FilterButton
+          key={item.id}
+          data-value={item.value.sportsCategory}
+          active={item.value.sportsCategory === category}
+          onClick={handleClick}
+        >
+          {item.text}
+        </FilterButton>
+      ))}
+    </div>
   );
 };
 

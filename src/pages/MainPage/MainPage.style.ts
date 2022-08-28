@@ -13,13 +13,15 @@ export const ImgWrapper = styled.div`
 
 export const Content = styled.div`
   text-align: center;
+  margin-bottom: 100px;
 `;
 
 export const Title = styled.span`
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
   margin-top: 80px;
-  margin-right: 45%;
+  margin-right: 660px;
+  margin-bottom: 10px;
 `;
 
 export const MoreButton = styled.button`

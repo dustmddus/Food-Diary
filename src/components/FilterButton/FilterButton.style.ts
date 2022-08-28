@@ -10,7 +10,7 @@ export const FilterButton = styled.button<StyleProps>`
   border-radius: 50%;
   margin: 20px;
   border: none;
-  background-color: #d9d9d9;
+  background-color: ${({ active }) => (active ? "#FFD400" : "#D9D9D9")};
   text-align: center;
   font-size: 17px;
 `;
