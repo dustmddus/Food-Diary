@@ -1,0 +1,67 @@
+import { FormEvent, useEffect, useState, ChangeEvent } from "react";
+
+interface useFormProps<T> {
+  initialValue: T;
+  initialError: T;
+  initialSuccess: T;
+  onSubmit: (values: T, e?: FormEvent<HTMLFormElement>) => void;
+  validate?: (values: T) => T;
+}
+
+export const useForm = <T>({
+  initialValue,
+  initialError,
+  initialSuccess,
+  onSubmit,
+  validate,
+}: useFormProps<T>) => {
+  const [values, setValues] = useState<T>(initialValue);
+  const [errors, setErrors] = useState<T>(initialError);
+  const [success, setSuccess] = useState<T>(initialSuccess as T);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFirst, setIsFirst] = useState(false);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setValues({
+      ...values,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    setIsLoading(true);
+    e.preventDefault();
+    setIsFirst(true);
+    if (validate) {
+      setErrors(validate(values));
+    } else {
+      onSubmit(values);
+    }
+  };
+
+  useEffect(() => {
+    if (isLoading) {
+      if (Object.keys(errors).length === 0) {
+        onSubmit(values);
+      }
+      setIsLoading(false);
+    }
+  }, [errors]);
+
+  useEffect(() => {
+    if (isFirst && validate) {
+      setErrors(validate(values));
+    }
+  }, [values]);
+
+  return {
+    values,
+    errors,
+    success,
+    isLoading,
+    handleChange,
+    handleSubmit,
+  };
+};

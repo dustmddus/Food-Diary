@@ -8,9 +8,12 @@ import { FilterList } from "src/components";
 import { useRecoilValue } from "recoil";
 import { sportsCategory } from "src/recoil/category";
 import { SPORTS_CATEGORY } from "src/constants/category";
+// import { MainPost } from "src/apis/postAPI";
 
 const MainPage = () => {
   const category = useRecoilValue(sportsCategory);
+
+  // console.log(MainPost());
 
   return (
     <>
@@ -22,7 +25,7 @@ const MainPage = () => {
         {SPORTS_CATEGORY.map(
           (item) =>
             item.value.sportsCategory === category && (
-              <S.Title>{item.text} 같이 해요!</S.Title>
+              <S.Title key={item.id}>{item.text} 같이 해요!</S.Title>
             )
         )}
 
