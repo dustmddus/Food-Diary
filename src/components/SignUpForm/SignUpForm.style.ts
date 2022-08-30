@@ -50,3 +50,11 @@ export const SignUpButton = styled.button`
   color: white;
   font-size: 18px;
 `;
+
+export const SuccessText = styled.div`
+  color: green;
+`;
+
+export const ErrorText = styled.div`
+  color: red;
+`;
