@@ -1,9 +1,9 @@
-import { FormEvent, useEffect, useState, ChangeEvent } from "react";
+import { useState, useEffect, FormEvent, ChangeEvent } from "react";
 
-interface useFormProps<T> {
+interface UseFormProps<T> {
   initialValue: T;
   initialError: T;
-  initialSuccess: T;
+  initialSuccess?: T;
   onSubmit: (values: T, e?: FormEvent<HTMLFormElement>) => void;
   validate?: (values: T) => T;
 }
@@ -14,7 +14,7 @@ export const useForm = <T>({
   initialSuccess,
   onSubmit,
   validate,
-}: useFormProps<T>) => {
+}: UseFormProps<T>) => {
   const [values, setValues] = useState<T>(initialValue);
   const [errors, setErrors] = useState<T>(initialError);
   const [success, setSuccess] = useState<T>(initialSuccess as T);
@@ -23,7 +23,6 @@ export const useForm = <T>({
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
     setValues({
       ...values,
       [name]: value,

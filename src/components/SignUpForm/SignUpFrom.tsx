@@ -6,9 +6,11 @@ import { Values } from "./types";
 import validation from "./validation";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { usernameDuplication, nicknameDuplication } from "./dummyData";
 
 const SignUpForm = () => {
   const navigate = useNavigate();
+  //재렌더링 위한 상태
   const [checked, setChecked] = useState(false);
   const [isDuplicate, setIsDuplicate] = useState({
     username: false,
@@ -34,7 +36,6 @@ const SignUpForm = () => {
           },
         });
         if (res.status === 200) {
-          console.log(res);
           navigate("/signin");
         }
       } catch (err) {
@@ -68,14 +69,6 @@ const SignUpForm = () => {
 
   const { username, nickname, password, passwordCheck } = values;
 
-  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name } = e.target;
-    setIsDuplicate({
-      ...isDuplicate,
-      [name]: false,
-    });
-  };
-
   const handleUsernameCheck = () => {
     const usernameCheck = async () => {
       const { username: usernameValidation } = validation({ username });
@@ -86,18 +79,19 @@ const SignUpForm = () => {
         return;
       }
 
-      const res = await axiosDefaultInstance({
-        method: "get",
-        url: `/api/users/username/duplication?input=${
-          values.username as string
-        }`,
-      });
-      if ((res.data as { data: object }).data) {
+      // const res = await axiosDefaultInstance({
+      //   method: "get",
+      //   url: `/api/users/username/duplication?input=${
+      //     values.username as string
+      //   }`,
+      // });
+      console.log(usernameDuplication.data);
+      if ((usernameDuplication as unknown as { data: boolean }).data) {
         success.username = "";
-        errors.username = "이미 사용중인 아이디입니다!";
+        errors.username = "이미 사용중인 아이디입니다.";
       } else {
         errors.username = "";
-        success.username = "사용 가능한 아이디입니다!";
+        success.username = "사용 가능한 아이디입니다.";
         setIsDuplicate({
           ...isDuplicate,
           username: true,
@@ -116,13 +110,13 @@ const SignUpForm = () => {
 
   const handleNicknameCheck = () => {
     const nicknameCheck = async () => {
-      const res = await axiosDefaultInstance({
-        method: "get",
-        url: `/api/users/nickname/duplication?input=${
-          values.nickname as string
-        }`,
-      });
-      if ((res.data as { data: object }).data) {
+      // const res = await axiosDefaultInstance({
+      //   method: "get",
+      //   url: `/api/users/nickname/duplication?input=${
+      //     values.nickname as string
+      //   }`,
+      // });
+      if ((nicknameDuplication.data as unknown as { data: object }).data) {
         success.nickname = "";
         errors.nickname = "이미 사용중인 닉네임입니다.";
       } else {
@@ -144,6 +138,9 @@ const SignUpForm = () => {
     nicknameCheck();
   };
 
+  console.log(errors);
+  console.log(success);
+
   return (
     <S.Form onSubmit={handleSubmit}>
       <S.Title>회원가입</S.Title>
@@ -153,8 +150,6 @@ const SignUpForm = () => {
           value={username}
           placeholder="아이디"
           onChange={(e) => {
-            // 왜 여기선  하고 닉네임에선 안했냐
-            handleUsernameChange(e);
             handleChange(e);
           }}
           onKeyDown={(e) => {
@@ -190,12 +185,12 @@ const SignUpForm = () => {
         <S.ConfirmButton onClick={handleNicknameCheck}>
           중복 확인
         </S.ConfirmButton>
-        {errors.nickname ? (
-          <S.ErrorText>{errors.nickname}</S.ErrorText>
-        ) : (
-          <S.SuccessText>{success.nickname}</S.SuccessText>
-        )}
       </S.FormWrapper>
+      {errors.nickname ? (
+        <S.ErrorText>{errors.nickname}</S.ErrorText>
+      ) : (
+        <S.SuccessText>{success.nickname}</S.SuccessText>
+      )}
       <S.Input
         name="password"
         value={password}
