@@ -9,3 +9,8 @@ export const SignUpModal = atom({
   key: "SignUpModal",
   default: false,
 });
+
+export const SetDistanceModal = atom({
+  key: "SetDistanceModal",
+  default: false,
+});

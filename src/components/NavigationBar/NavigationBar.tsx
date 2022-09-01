@@ -1,4 +1,3 @@
-import { useState, useCallback } from "react";
 import * as S from "./NavigationBar.style";
 import logo from "../../assets/textLogo.svg";
 import Modal from "../Modal";
@@ -7,23 +6,27 @@ import SignUpForm from "../SignUpForm";
 import Distance from "../Distance";
 import DistanceModal from "../DistanceModal";
 import { useRecoilState } from "recoil";
-import { LoginModal, SignUpModal } from "src/recoil/modal";
+import { LoginModal, SignUpModal, SetDistanceModal } from "src/recoil/modal";
+import { loginStatus } from "src/recoil/authentication";
+
 const NavigationBar = () => {
-  const [isOpenDistanceModal, setOpenDistanceModal] = useState<boolean>(false);
+  const [isOpenDistanceModal, setOpenDistanceModal] =
+    useRecoilState(SetDistanceModal);
   const [isOpenLoginModal, setOpenLoginModal] = useRecoilState(LoginModal);
   const [isOpenSignUpModal, setOpenSignUpModal] = useRecoilState(SignUpModal);
+  const [isLogin, setIsLogin] = useRecoilState(loginStatus);
 
-  const setDistance = useCallback(() => {
+  const setDistance = () => {
     setOpenDistanceModal(!isOpenDistanceModal);
-  }, [isOpenDistanceModal]);
+  };
 
-  const onClickLoginButton = useCallback(() => {
+  const onClickLoginButton = () => {
     setOpenLoginModal(!isOpenLoginModal);
-  }, [isOpenLoginModal]);
+  };
 
-  const onClickSignUpButton = useCallback(() => {
+  const onClickSignUpButton = () => {
     setOpenSignUpModal(!isOpenSignUpModal);
-  }, [isOpenSignUpModal]);
+  };
 
   return (
     <>
@@ -63,6 +66,13 @@ const NavigationBar = () => {
         <S.UserButton>
           <S.Button onClick={onClickLoginButton}>로그인</S.Button>
           <S.Button onClick={onClickSignUpButton}>회원가입</S.Button>
+          {/* {isLogin ? (
+            <>
+              
+            </>
+          ) : (
+              
+          )} */}
         </S.UserButton>
       </S.Continer>
     </>
