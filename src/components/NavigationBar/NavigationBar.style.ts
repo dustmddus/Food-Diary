@@ -35,7 +35,7 @@ export const Nav = styled.nav`
 
 export const Item = styled.div`
   padding: 12px 10px;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 600;
   &:hover {
     background-color: #ffec91;
@@ -47,7 +47,7 @@ export const NavItem = styled(Link)`
   padding: 12px 10px;
   text-decoration: none;
   color: black;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 600;
   &:hover {
     background-color: #ffec91;

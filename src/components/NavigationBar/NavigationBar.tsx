@@ -8,8 +8,12 @@ import DistanceModal from "../DistanceModal";
 import { useRecoilState } from "recoil";
 import { LoginModal, SignUpModal, SetDistanceModal } from "src/recoil/modal";
 import { loginStatus } from "src/recoil/authentication";
+import PrivacyBlock from "./PrivacyBlock";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const NavigationBar = () => {
+  const location = useLocation();
   const [isOpenDistanceModal, setOpenDistanceModal] =
     useRecoilState(SetDistanceModal);
   const [isOpenLoginModal, setOpenLoginModal] = useRecoilState(LoginModal);
@@ -28,12 +32,17 @@ const NavigationBar = () => {
     setOpenSignUpModal(!isOpenSignUpModal);
   };
 
+  useEffect(() => {
+    setOpenDistanceModal(false);
+    setOpenLoginModal(false);
+    setOpenSignUpModal(false);
+  }, [location]);
   return (
     <>
       <S.Continer>
         <S.ItemContainer>
           <S.Logo to="/">
-            <img src={logo} alt="" />
+            <img src={logo} alt="" width="150px" />
           </S.Logo>
           <S.Nav>
             <S.Item onClick={setDistance}>내 동네 설정</S.Item>
@@ -64,15 +73,14 @@ const NavigationBar = () => {
         )}
 
         <S.UserButton>
-          <S.Button onClick={onClickLoginButton}>로그인</S.Button>
-          <S.Button onClick={onClickSignUpButton}>회원가입</S.Button>
-          {/* {isLogin ? (
-            <>
-              
-            </>
+          {isLogin ? (
+            <PrivacyBlock />
           ) : (
-              
-          )} */}
+            <>
+              <S.Button onClick={onClickLoginButton}>로그인</S.Button>
+              <S.Button onClick={onClickSignUpButton}>회원가입</S.Button>
+            </>
+          )}
         </S.UserButton>
       </S.Continer>
     </>
