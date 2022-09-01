@@ -6,10 +6,12 @@ import LoginForm from "../LoginForm";
 import SignUpForm from "../SignUpForm";
 import Distance from "../Distance";
 import DistanceModal from "../DistanceModal";
+import { useRecoilState } from "recoil";
+import { LoginModal, SignUpModal } from "src/recoil/modal";
 const NavigationBar = () => {
   const [isOpenDistanceModal, setOpenDistanceModal] = useState<boolean>(false);
-  const [isOpenLoginModal, setOpenLoginModal] = useState<boolean>(false);
-  const [isOpenSignUpModal, setOpenSignUpModal] = useState<boolean>(false);
+  const [isOpenLoginModal, setOpenLoginModal] = useRecoilState(LoginModal);
+  const [isOpenSignUpModal, setOpenSignUpModal] = useRecoilState(SignUpModal);
 
   const setDistance = useCallback(() => {
     setOpenDistanceModal(!isOpenDistanceModal);

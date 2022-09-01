@@ -3,9 +3,9 @@ import styled from "@emotion/styled";
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  align-items: center;
+  margin-top: 60px;
 `;
 
 export const Title = styled.div`
@@ -13,14 +13,15 @@ export const Title = styled.div`
   font-weight: 600;
   margin-bottom: 60px;
 `;
-export const FormWrapper = styled.div``;
+export const FormWrapper = styled.div`
+  margin-bottom: 15px;
+`;
 
 export const ConfirmInput = styled.input`
   width: 300px;
   font-size: 16px;
   border: none;
   border-bottom: 1px solid black;
-  margin-bottom: 40px;
 `;
 
 export const Input = styled.input`
