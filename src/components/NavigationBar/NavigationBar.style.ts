@@ -62,13 +62,13 @@ export const UserButton = styled.div`
 `;
 
 export const Button = styled.button`
-  width: 100px;
-  height: 40px;
+  width: 90px;
+  height: 35px;
   margin-right: 20px;
   border: none;
   background-color: #ffd400;
   color: white;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
   border-radius: 10px;
 `;

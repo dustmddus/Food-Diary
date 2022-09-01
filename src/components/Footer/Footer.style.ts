@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  height: 410px;
+  height: 350px;
   background-color: #f2f2f2;
 `;
 
@@ -23,7 +23,7 @@ export const FooterItem = styled.div`
   gap: 30px;
 `;
 export const Title = styled.span`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: #a58d1a;
 `;

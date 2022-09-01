@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <S.Container>
       <S.ImgWrapper>
-        <img src={catchphrase} width="350px" />
+        <img src={catchphrase} width="300px" />
       </S.ImgWrapper>
       <S.FooterContent>
         <S.FooterItem>

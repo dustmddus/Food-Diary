@@ -19,7 +19,7 @@ const MainPage = () => {
     <>
       <S.Container>
         <S.ImgWrapper>
-          <img src={mainImg} width="600px" />
+          <img src={mainImg} width="500px" />
         </S.ImgWrapper>
         <FilterList />
         {SPORTS_CATEGORY.map(

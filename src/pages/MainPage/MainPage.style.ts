@@ -17,10 +17,9 @@ export const Content = styled.div`
 `;
 
 export const Title = styled.span`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   margin-top: 80px;
-  margin-right: 660px;
   margin-bottom: 10px;
 `;
 

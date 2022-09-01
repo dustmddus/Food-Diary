@@ -5,46 +5,46 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 50px;
 `;
 
 export const Title = styled.div`
-  font-size: 35px;
+  font-size: 28px;
   font-weight: 600;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 `;
 export const FormWrapper = styled.div`
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 `;
 
 export const ConfirmInput = styled.input`
-  width: 300px;
+  width: 280px;
   font-size: 16px;
   border: none;
   border-bottom: 1px solid black;
 `;
 
 export const Input = styled.input`
-  width: 400px;
+  width: 360px;
   font-size: 16px;
   border: none;
   border-bottom: 1px solid black;
-  margin-bottom: 40px;
+  margin-bottom: 25px;
 `;
 
 export const ConfirmButton = styled.button`
-  width: 100px;
-  height: 40px;
+  width: 80px;
+  height: 30px;
   border: 10px;
   background-color: #ffd400;
   border-radius: 10px;
   color: white;
-  font-size: 18px;
+  font-size: 14px;
 `;
 
 export const SignUpButton = styled.button`
-  width: 170px;
-  height: 50px;
+  width: 150px;
+  height: 45px;
   border: 10px;
   background-color: #ffd400;
   border-radius: 10px;

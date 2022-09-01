@@ -3,10 +3,10 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 850px;
-  height: 90px;
+  width: 700px;
+  height: 80px;
   margin: 40px;
-  padding-top: 25px;
+  padding-top: 20px;
   padding-left: 40px;
   border-radius: 20px;
   background-color: white;
@@ -19,7 +19,7 @@ export const Description = styled.div`
 `;
 
 export const Title = styled.span`
-  font-size: 20px;
+  font-size: 18px;
 `;
 
 export const Info = styled.div`
@@ -29,12 +29,12 @@ export const Info = styled.div`
 `;
 
 export const Distance = styled.span`
-  font-size: 16px;
+  font-size: 14px;
   margin-right: 10px;
 `;
 
 export const Date = styled.span`
-  font-size: 16px;
+  font-size: 14px;
 `;
 
 export const Status = styled.div`

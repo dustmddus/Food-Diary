@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 
 export const Alarm = styled.img`
-  width: 25px;
+  width: 22px;
 `;
 
 export const Avatar = styled.img`
