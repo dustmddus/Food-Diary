@@ -11,10 +11,7 @@ export const ImgWrapper = styled.div`
   margin-bottom: 30px;
 `;
 
-export const Content = styled.div`
-  text-align: center;
-  margin-bottom: 100px;
-`;
+export const Content = styled.div``;
 
 export const Title = styled.span`
   font-size: 20px;
@@ -31,4 +28,5 @@ export const MoreButton = styled.button`
   font-size: 16px;
   width: 150px;
   height: 50px;
+  margin-bottom: 100px;
 `;
