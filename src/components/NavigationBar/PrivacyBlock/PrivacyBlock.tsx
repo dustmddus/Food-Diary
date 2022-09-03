@@ -5,13 +5,9 @@ import Avatar from "../../../assets/avatar.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 import Text from "src/components/Text";
 import { useRecoilState } from "recoil";
-import { LocationModal, SetDistanceModal } from "src/recoil/modal";
-import Distance from "../../Distance";
-import DistanceModal from "../../DistanceModal";
+import { LocationModal } from "src/recoil/modal";
 import { axiosAuthInstance } from "src/apis/axiosInstances";
 import { loginStatus } from "src/recoil/authentication";
-import LocationForm from "src/components/LocationForm";
-import Modal from "src/components/Modal";
 
 const PrivacyBlock = () => {
   const location = useLocation();

@@ -102,7 +102,9 @@ const LocationForm = () => {
       <S.SliderWrapper>
         <DistanceSlider setDistance={setDistance} distance={distance.current} />
       </S.SliderWrapper>
-      <S.Button onClick={handleSubmit}>설정 완료</S.Button>
+      <S.Button onClick={handleSubmit} disabled={kakaoLoading}>
+        설정 완료
+      </S.Button>
     </S.Container>
   );
 };
