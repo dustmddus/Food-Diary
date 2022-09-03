@@ -35,6 +35,12 @@ const LocationForm = () => {
   };
 
   useEffect(() => {
+    if (loginUser.searchDistance) {
+      setDistance(loginUser.searchDistance);
+    }
+  }, []);
+
+  useEffect(() => {
     setKakaoLoading(true);
     async function fetchAddress() {
       if (geolocation.latitude && geolocation.longitude) {

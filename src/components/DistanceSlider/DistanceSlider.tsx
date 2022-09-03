@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef } from "react";
+import { ChangeEvent, useEffect, useRef } from "react";
 import * as S from "./DistanceSlider.styles";
 
 interface Props {
@@ -24,6 +24,12 @@ const DistanceSlider = ({ distance, setDistance }: Props) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setDistance(e.target.valueAsNumber);
   };
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.valueAsNumber = distance;
+    }
+  });
 
   return (
     <S.Container>

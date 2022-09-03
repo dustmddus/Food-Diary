@@ -59,3 +59,12 @@ export const Modal = styled.div`
   left: 0;
   top: 0;
 `;
+
+export const ModalContainer = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

@@ -11,3 +11,7 @@ export const TextWrapper = styled.div`
   font-size: 20px;
   margin-top: 30px;
 `;
+
+export const SliderWrapper = styled.div`
+  text-align: center;
+`;

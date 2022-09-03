@@ -2,7 +2,7 @@ import * as S from "./Modal.style";
 import { PropsWithChildren } from "react";
 
 interface ModalDefaultType {
-  onClickToggleModal: () => void;
+  onClickToggleModal?: () => void;
 }
 
 const Modal = ({

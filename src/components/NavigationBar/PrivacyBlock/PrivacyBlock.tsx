@@ -5,11 +5,13 @@ import Avatar from "../../../assets/avatar.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 import Text from "src/components/Text";
 import { useRecoilState } from "recoil";
-import { SetDistanceModal } from "src/recoil/modal";
+import { LocationModal, SetDistanceModal } from "src/recoil/modal";
 import Distance from "../../Distance";
 import DistanceModal from "../../DistanceModal";
 import { axiosAuthInstance } from "src/apis/axiosInstances";
 import { loginStatus } from "src/recoil/authentication";
+import LocationForm from "src/components/LocationForm";
+import Modal from "src/components/Modal";
 
 const PrivacyBlock = () => {
   const location = useLocation();
@@ -18,11 +20,11 @@ const PrivacyBlock = () => {
   const [showProfile, setShowProfile] = useState(false);
   const [isLogin, setIsLogin] = useRecoilState(loginStatus);
 
-  const [isOpenDistanceModal, setOpenDistanceModal] =
-    useRecoilState(SetDistanceModal);
+  const [isOpenLocationModal, setOpenLocationModal] =
+    useRecoilState(LocationModal);
 
   const setDistance = () => {
-    setOpenDistanceModal(!isOpenDistanceModal);
+    setOpenLocationModal(!isOpenLocationModal);
   };
 
   const handleAlarmClick = () => {
@@ -79,13 +81,6 @@ const PrivacyBlock = () => {
           </S.ProfileWrapper>
         )}
       </S.ItemWrapper>
-      <S.Modal>
-        {isOpenDistanceModal && (
-          <DistanceModal onClickToggleModal={setDistance}>
-            <Distance />
-          </DistanceModal>
-        )}
-      </S.Modal>
     </S.Container>
   );
 };

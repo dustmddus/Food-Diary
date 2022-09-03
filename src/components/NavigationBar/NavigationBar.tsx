@@ -28,10 +28,6 @@ const NavigationBar = () => {
     setOpenSignUpModal(!isOpenSignUpModal);
   };
 
-  const onClickLocation = () => {
-    setOpenLocationModal(!isOpenLocationModal);
-  };
-
   const handleAlertLogin = () => {
     alert("로그인이 필요합니다~!!");
     setOpenLoginModal(true);
@@ -84,7 +80,7 @@ const NavigationBar = () => {
         {/* 위치 설정 모달 */}
         {isOpenLocationModal && (
           <S.ModalContainer>
-            <Modal onClickToggleModal={onClickLocation}>
+            <Modal>
               <LocationForm />
             </Modal>
           </S.ModalContainer>
