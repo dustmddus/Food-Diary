@@ -30,3 +30,5 @@ export const MoreButton = styled.button`
   height: 50px;
   margin-bottom: 100px;
 `;
+
+export const InfoWrapper = styled.div``;

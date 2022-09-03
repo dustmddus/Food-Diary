@@ -4,13 +4,13 @@ import { NavigationBar } from "./components";
 import { MainPage } from "./pages";
 import Footer from "./components/Footer/Footer";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-const PostListPage = lazy(() => import("./pages/PostListPage"));
-const PostDetailPage = lazy(() => import("./pages/PostDetailPage"));
-const PostCreatePage = lazy(() => import("./pages/PostCreatePage"));
-const TeamCreatePage = lazy(() => import("./pages/TeamCreatePage"));
-const TeamDetailPage = lazy(() => import("./pages/TeamDetailPage"));
-const PersonalDetailPage = lazy(() => import("./pages/PersonalDetailPage"));
-const ProposalPage = lazy(() => import("./pages/ProposalPage"));
+import PostListPage from "./pages/PostListPage";
+import PostDetailPage from "./pages/PostDetailPage";
+import PostCreatePage from "./pages/PostCreatePage";
+import TeamCreatePage from "./pages/TeamCreatePage";
+import TeamDetailPage from "./pages/TeamDetailPage";
+import PersonalDetailPage from "./pages/PersonalDetailPage";
+import ProposalPage from "./pages/ProposalPage";
 
 const App = () => {
   return (

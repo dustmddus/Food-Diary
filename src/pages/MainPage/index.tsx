@@ -10,9 +10,12 @@ import { sportsCategory } from "src/recoil/category";
 import { SPORTS_CATEGORY } from "src/constants/category";
 import { useEffect, useState } from "react";
 import { Response } from "../PostListPage/types";
+import { loginStatus } from "src/recoil/authentication";
 
 const MainPage = () => {
   const category = useRecoilValue(sportsCategory);
+  const isLogin = useRecoilValue(loginStatus);
+
   const [state, setState] = useState<Response>({
     cursor: {
       createdAt: "",
@@ -55,22 +58,28 @@ const MainPage = () => {
             )
         )}
 
-        <S.Content>
-          {state.values.map((i: Values) => (
-            <PostItem
-              id={i.id}
-              key={i.id}
-              title={i.title}
-              distance={i.distance}
-              date={i.createdAt}
-              category={i.category}
-              matchType={i.matchType}
-            />
-          ))}
-        </S.Content>
-        <Link to="/postList">
-          <S.MoreButton>더보기</S.MoreButton>
-        </Link>
+        {isLogin ? (
+          <>
+            <S.Content>
+              {state.values.map((i: Values) => (
+                <PostItem
+                  id={i.id}
+                  key={i.id}
+                  title={i.title}
+                  distance={i.distance}
+                  date={i.createdAt}
+                  category={i.category}
+                  matchType={i.matchType}
+                />
+              ))}
+            </S.Content>
+            <Link to="/postList">
+              <S.MoreButton>더보기</S.MoreButton>
+            </Link>
+          </>
+        ) : (
+          <S.InfoWrapper>hello</S.InfoWrapper>
+        )}
       </S.Container>
     </>
   );
