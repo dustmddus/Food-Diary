@@ -78,7 +78,9 @@ const MainPage = () => {
             </Link>
           </>
         ) : (
-          <S.InfoWrapper>hello</S.InfoWrapper>
+          <>
+            <S.InfoWrapper>여기에 로그인 안내 들어감다.</S.InfoWrapper>
+          </>
         )}
       </S.Container>
     </>
