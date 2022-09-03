@@ -7,11 +7,9 @@ interface Props {
 }
 
 const DistanceSlider = ({ distance, setDistance }: Props) => {
-  const [min, max] = [0, 40];
+  const [min, max] = [5, 40];
   const step = 5;
-  const width = 388;
   const RangeTexts = [
-    { id: 0, value: 0 },
     { id: 1, value: 5 },
     { id: 2, value: 10 },
     { id: 3, value: 15 },

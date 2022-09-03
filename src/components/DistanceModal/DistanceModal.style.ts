@@ -6,6 +6,7 @@ export const ModalContainer = styled.div`
   display: flex;
   margin-top: 70px;
   position: fixed;
+  top: 0;
 `;
 
 export const DialogBox = styled.dialog`

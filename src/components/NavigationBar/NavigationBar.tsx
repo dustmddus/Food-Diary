@@ -4,17 +4,20 @@ import Modal from "../Modal";
 import LoginForm from "../LoginForm";
 import SignUpForm from "../SignUpForm";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { LoginModal, SignUpModal } from "src/recoil/modal";
+import { LocationModal, LoginModal, SignUpModal } from "src/recoil/modal";
 import { loginStatus } from "src/recoil/authentication";
 import PrivacyBlock from "./PrivacyBlock";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import LocationForm from "../LocationForm";
 
 const NavigationBar = () => {
   const location = useLocation();
 
   const [isOpenLoginModal, setOpenLoginModal] = useRecoilState(LoginModal);
   const [isOpenSignUpModal, setOpenSignUpModal] = useRecoilState(SignUpModal);
+  const [isOpenLocationModal, setOpenLocationModal] =
+    useRecoilState(LocationModal);
   const isLogin = useRecoilValue(loginStatus);
 
   const onClickLoginButton = () => {
@@ -23,6 +26,10 @@ const NavigationBar = () => {
 
   const onClickSignUpButton = () => {
     setOpenSignUpModal(!isOpenSignUpModal);
+  };
+
+  const onClickLocation = () => {
+    setOpenLocationModal(!isOpenLocationModal);
   };
 
   const handleAlertLogin = () => {
@@ -74,7 +81,14 @@ const NavigationBar = () => {
             </Modal>
           </S.ModalContainer>
         )}
-
+        {/* 위치 설정 모달 */}
+        {isOpenLocationModal && (
+          <S.ModalContainer>
+            <Modal onClickToggleModal={onClickLocation}>
+              <LocationForm />
+            </Modal>
+          </S.ModalContainer>
+        )}
         <S.UserButton>
           {isLogin ? (
             <PrivacyBlock />

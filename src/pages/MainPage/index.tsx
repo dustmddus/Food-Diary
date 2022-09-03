@@ -57,7 +57,6 @@ const MainPage = () => {
               <S.Title key={item.id}>{item.text} 같이 해요!</S.Title>
             )
         )}
-
         {isLogin ? (
           <>
             <S.Content>

@@ -5,13 +5,14 @@ export const Container = styled.div`
 `;
 
 export const RangeInput = styled.input`
-  width: 500px;
+  width: 400px;
 `;
 
 export const TextWrapper = styled.div`
+  margin-left: 5px;
   width: 500px;
 `;
 
 export const RangeText = styled.span`
-  margin: 70px 30px 0 14px;
+  margin: 70px 23px 0 15px;
 `;

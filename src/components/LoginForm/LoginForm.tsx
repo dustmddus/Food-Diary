@@ -1,6 +1,6 @@
 import * as S from "./LoginForm.style";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { LoginModal, SignUpModal, SetDistanceModal } from "src/recoil/modal";
+import { LoginModal, SignUpModal, LocationModal } from "src/recoil/modal";
 import { useForm } from "src/hooks/useForm";
 import { Values, Response, User, ErrorResponse } from "./types";
 import { FormEvent } from "react";
@@ -11,8 +11,8 @@ import { loginStatus } from "src/recoil/authentication";
 
 const LoginForm = () => {
   const setUser = useSetRecoilState(userInfo);
-  const [isOpenDistanceModal, setOpenDistanceModal] =
-    useRecoilState(SetDistanceModal);
+  const [isOpenLocationModal, setOpenLocationModal] =
+    useRecoilState(LocationModal);
   const [isOpenLoginModal, setOpenLoginModal] = useRecoilState(LoginModal);
   const [isOpenSignUpModal, setOpenSignUpModal] = useRecoilState(SignUpModal);
   const [isLogin, setIsLogin] = useRecoilState(loginStatus);
@@ -30,8 +30,9 @@ const LoginForm = () => {
         });
         setUser(user);
         if (user.searchDistance === null) {
+          console.log(user.searchDistance);
           setOpenLoginModal(!isOpenLoginModal);
-          setOpenDistanceModal(!isOpenDistanceModal);
+          setOpenLocationModal(!isOpenLocationModal);
         } else {
           setOpenLoginModal(!isOpenLoginModal);
         }

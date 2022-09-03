@@ -14,3 +14,8 @@ export const SetDistanceModal = atom({
   key: "SetDistanceModal",
   default: false,
 });
+
+export const LocationModal = atom({
+  key: "LocationModal",
+  default: false,
+});
