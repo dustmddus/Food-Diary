@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 
-export const Container = styled.div`
+export const Container = styled.div``;
+
+export const ItemWrapper = styled.div`
   width: 200px;
   display: flex;
   justify-content: space-around;
@@ -27,7 +29,7 @@ export const AlarmWrapper = styled.div`
   overflow: auto;
   padding: 15px;
   top: 90%;
-  right: 9%;
+  right: 1%;
   border-radius: 10px;
   background-color: white;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
@@ -50,4 +52,10 @@ export const ProfileWrapper = styled.div`
   border-radius: 10px;
   background-color: white;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+`;
+
+export const Modal = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
 `;

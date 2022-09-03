@@ -5,16 +5,23 @@ interface Props {
   size?: string;
   color?: string;
   weight?: string | number;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const defaultProps = {
   size: "14px",
 };
 
-const Text = ({ children, size, color, weight, ...styles }: Props) => {
+const Text = ({ children, size, color, weight, onClick, ...styles }: Props) => {
   return (
     <>
-      <S.Text size={size} color={color} weight={weight} {...styles}>
+      <S.Text
+        size={size}
+        color={color}
+        weight={weight}
+        onClick={onClick}
+        {...styles}
+      >
         {children}
       </S.Text>
     </>
