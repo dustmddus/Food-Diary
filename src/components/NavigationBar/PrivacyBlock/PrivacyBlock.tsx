@@ -57,8 +57,6 @@ const PrivacyBlock = () => {
   return (
     <S.Container>
       <S.ItemWrapper>
-        {/* 전역 user 정보 위치 넣기 */}
-
         <S.Location onClick={setDistance}>{locationName}</S.Location>
 
         <S.Alarm src={Alarm} onClick={handleAlarmClick} />

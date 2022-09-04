@@ -104,13 +104,13 @@ const MainPage = () => {
                 )}
               </>
             )}
+            {isLoading && <span>여기에 로딩 이미지 들어감다</span>}
           </>
         ) : (
           <>
             <S.InfoWrapper>여기에 로그인 안내 들어감다.</S.InfoWrapper>
           </>
         )}
-        {isLoading && <span>여기에 로딩 이미지 들어감다</span>}
       </S.Container>
     </>
   );
