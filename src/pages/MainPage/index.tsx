@@ -2,7 +2,6 @@ import PostItem from "../../components/PostItem";
 import mainImg from "../../assets/mainImg.svg";
 import * as S from "./MainPage.style";
 import { Link } from "react-router-dom";
-import { dummyData } from "../PostListPage/dummyData";
 import { Values } from "../PostListPage/types";
 import { FilterList } from "src/components";
 import { useRecoilValue } from "recoil";
@@ -11,10 +10,15 @@ import { SPORTS_CATEGORY } from "src/constants/category";
 import { useEffect, useState } from "react";
 import { Response } from "../PostListPage/types";
 import { loginStatus } from "src/recoil/authentication";
+import { axiosAuthInstance } from "src/apis/axiosInstances";
+import { userInfo } from "src/recoil/user";
+import { AxiosResponse } from "axios";
 
 const MainPage = () => {
   const category = useRecoilValue(sportsCategory);
   const isLogin = useRecoilValue(loginStatus);
+  const user = useRecoilValue(userInfo);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [state, setState] = useState<Response>({
     cursor: {
@@ -27,21 +31,38 @@ const MainPage = () => {
   });
 
   useEffect(() => {
-    //전체 포스트 api-거리 설정하고 붙이기.
-    const data = dummyData.data;
-    const latestPost = data.values
-      .sort((a, b) => {
-        const dateA = new Date(a.createdAt);
-        const dateB = new Date(b.createdAt);
-        return dateB.getTime() - dateA.getTime();
-      })
-      .filter((_, index) => index < 5);
-    setState({
-      values: latestPost,
-      hasNext: data.hasNext,
-      cursor: data.cursor,
-      category: category,
-    });
+    const getPost = async () => {
+      try {
+        setIsLoading(true);
+        const res = await axiosAuthInstance.get("/api/matches", {
+          params: {
+            size: 10,
+            category,
+            status: "WAITING",
+            userId: "",
+            distance: user.searchDistance,
+          },
+        });
+        const data = (res.data as AxiosResponse).data as Response;
+        const latestPost = data.values
+          .sort((a, b) => {
+            const dateA = new Date(a.createdAt);
+            const dateB = new Date(b.createdAt);
+            return dateB.getTime() - dateA.getTime();
+          })
+          .filter((_, index) => index < 5);
+        setState({
+          values: latestPost,
+          hasNext: data.hasNext,
+          cursor: data.cursor,
+          category: category,
+        });
+        setIsLoading(false);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getPost();
   }, [category]);
 
   return (
@@ -59,28 +80,37 @@ const MainPage = () => {
         )}
         {isLogin ? (
           <>
-            <S.Content>
-              {state.values.map((i: Values) => (
-                <PostItem
-                  id={i.id}
-                  key={i.id}
-                  title={i.title}
-                  distance={i.distance}
-                  date={i.createdAt}
-                  category={i.category}
-                  matchType={i.matchType}
-                />
-              ))}
-            </S.Content>
-            <Link to="/postList">
-              <S.MoreButton>더보기</S.MoreButton>
-            </Link>
+            {!isLoading && state.values.length === 0 ? (
+              <span>결과 없음 이미지</span>
+            ) : (
+              <>
+                <S.Content>
+                  {state.values.map((i: Values) => (
+                    <PostItem
+                      id={i.id}
+                      key={i.id}
+                      title={i.title}
+                      distance={i.distance}
+                      date={i.createdAt}
+                      category={i.category}
+                      matchType={i.matchType}
+                    />
+                  ))}
+                </S.Content>
+                {!isLoading && (
+                  <Link to="/postList">
+                    <S.MoreButton>더보기</S.MoreButton>
+                  </Link>
+                )}
+              </>
+            )}
           </>
         ) : (
           <>
             <S.InfoWrapper>여기에 로그인 안내 들어감다.</S.InfoWrapper>
           </>
         )}
+        {isLoading && <span>여기에 로딩 이미지 들어감다</span>}
       </S.Container>
     </>
   );

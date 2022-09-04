@@ -54,12 +54,6 @@ export const ProfileWrapper = styled.div`
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 `;
 
-export const Modal = styled.div`
-  position: absolute;
-  left: 0;
-  top: 0;
-`;
-
 export const ModalContainer = styled.div`
   position: absolute;
   width: 100%;

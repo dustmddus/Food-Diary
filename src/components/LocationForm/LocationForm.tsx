@@ -5,16 +5,16 @@ import { useEffect, useState } from "react";
 import useGeolocation from "react-hook-geolocation";
 import { useRef } from "react";
 import DistanceSlider from "../DistanceSlider";
-import { userInfo } from "src/recoil/user";
-import { useRecoilState } from "recoil";
+import { userInfo, userLocation } from "src/recoil/user";
+import { useRecoilState, useResetRecoilState, useSetRecoilState } from "recoil";
 import { LocationModal } from "src/recoil/modal";
 import { axiosAuthInstance } from "src/apis/axiosInstances";
 
 const LocationForm = () => {
   const distance = useRef<number>(5);
   const [loginUser, setLoginUser] = useRecoilState(userInfo);
-  const [isOpenLocationModal, setOpenLocationModal] =
-    useRecoilState(LocationModal);
+  const setOpenLocationModal = useSetRecoilState(LocationModal);
+  const [locationName, setLocationName] = useRecoilState(userLocation);
   const [kakaoLoading, setKakaoLoading] = useState<boolean>(true);
   const [address, setAddress] = useState<Address>({
     address_name: "",
@@ -62,6 +62,7 @@ const LocationForm = () => {
       latitude: geolocation.latitude,
       searchDistance: distance.current,
     });
+    setLocationName(address.region_3depth_name);
     axiosAuthInstance({
       method: "PUT",
       url: "/api/users/location",
@@ -90,7 +91,7 @@ const LocationForm = () => {
           <Text>설정 중...</Text>
         ) : (
           <Text weight="600">
-            {address.region_1depth_name} {address.region_2depth_name}
+            {address.region_1depth_name} {address.region_2depth_name}{" "}
             {address.region_3depth_name}
           </Text>
         )}

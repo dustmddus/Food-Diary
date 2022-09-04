@@ -16,3 +16,8 @@ export const userInfo = atom<Partial<User>>({
   key: "userInfo",
   default: {},
 });
+
+export const userLocation = atom({
+  key: "userLocation",
+  default: "",
+});

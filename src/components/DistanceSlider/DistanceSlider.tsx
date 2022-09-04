@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useRef } from "react";
-import * as S from "./DistanceSlider.styles";
+import * as S from "./DistanceSlider.style";
 
 interface Props {
   distance: number;

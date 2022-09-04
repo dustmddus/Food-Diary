@@ -4,10 +4,11 @@ import Alarm from "../../../assets/alarm.svg";
 import Avatar from "../../../assets/avatar.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 import Text from "src/components/Text";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { LocationModal } from "src/recoil/modal";
 import { axiosAuthInstance } from "src/apis/axiosInstances";
 import { loginStatus } from "src/recoil/authentication";
+import { userLocation } from "src/recoil/user";
 
 const PrivacyBlock = () => {
   const location = useLocation();
@@ -15,6 +16,7 @@ const PrivacyBlock = () => {
   const [showAlarm, setShowAlarm] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [isLogin, setIsLogin] = useRecoilState(loginStatus);
+  const locationName = useRecoilValue(userLocation);
 
   const [isOpenLocationModal, setOpenLocationModal] =
     useRecoilState(LocationModal);
@@ -56,7 +58,8 @@ const PrivacyBlock = () => {
     <S.Container>
       <S.ItemWrapper>
         {/* 전역 user 정보 위치 넣기 */}
-        <S.Location onClick={setDistance}>연남동</S.Location>
+
+        <S.Location onClick={setDistance}>{locationName}</S.Location>
 
         <S.Alarm src={Alarm} onClick={handleAlarmClick} />
         {showAlarm && (
