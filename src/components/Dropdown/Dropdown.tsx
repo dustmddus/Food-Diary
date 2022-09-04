@@ -10,17 +10,21 @@ interface Props {
   placeholder: string;
   width?: string;
   height?: string;
+  disabled?: boolean;
   borderRadius?: string;
   fontSize?: string;
+  onChange?: React.ChangeEventHandler<HTMLSelectElement>;
 }
 
 const Dropdown = ({
   valueList,
   placeholder,
-  width = "800px",
-  height = "60px",
+  width = "700px",
+  height = "40px",
   borderRadius = "20px",
-  fontSize = "20px",
+  fontSize = "18px",
+  disabled,
+  onChange,
 }: Props) => {
   return (
     <S.Container>
@@ -31,6 +35,8 @@ const Dropdown = ({
         height={height}
         fontSize={fontSize}
         borderRadius={borderRadius}
+        onChange={onChange}
+        disabled={disabled}
       >
         <S.Option value="Default" disabled>
           {placeholder}

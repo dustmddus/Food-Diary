@@ -6,7 +6,7 @@ import { Values } from "../PostListPage/types";
 import { FilterList } from "src/components";
 import { useRecoilValue } from "recoil";
 import { sportsCategory } from "src/recoil/category";
-import { SPORTS_CATEGORY } from "src/constants/category";
+import { SPORTS_CATEGORY_DROPDOWN } from "src/constants/category";
 import { useEffect, useState } from "react";
 import { Response } from "../PostListPage/types";
 import { loginStatus } from "src/recoil/authentication";
@@ -72,7 +72,7 @@ const MainPage = () => {
           <img src={mainImg} width="500px" />
         </S.ImgWrapper>
         <FilterList />
-        {SPORTS_CATEGORY.map(
+        {SPORTS_CATEGORY_DROPDOWN.map(
           (item) =>
             item.value.sportsCategory === category && (
               <S.Title key={item.id}>{item.text} 같이 해요!</S.Title>

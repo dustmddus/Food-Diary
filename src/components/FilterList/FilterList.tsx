@@ -1,5 +1,5 @@
 import FilterButton from "../FilterButton";
-import { SPORTS_CATEGORY } from "src/constants/category";
+import { SPORTS_CATEGORY_DROPDOWN } from "src/constants/category";
 import { useState } from "react";
 import { Response } from "./type";
 import { useRecoilState } from "recoil";
@@ -37,7 +37,7 @@ const FilterList = () => {
   };
   return (
     <div>
-      {SPORTS_CATEGORY.map((item) => (
+      {SPORTS_CATEGORY_DROPDOWN.map((item) => (
         <FilterButton
           key={item.id}
           data-value={item.value.sportsCategory}
