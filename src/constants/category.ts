@@ -12,6 +12,11 @@ export const SPORTS_CATEGORY_DROPDOWN = [
   { id: 6, text: "골프", value: { sportsCategory: "GOLF" } },
 ];
 
+export const MATCH_STATUS_DROPDOWN = [
+  { id: 0, text: "모집 중", value: { status: "WAITING" } },
+  { id: 1, text: "모집 완료", value: { status: "IN_GAME" } },
+];
+
 export const SPORTS_CATEGORY_TEXT: Text = {
   SOCCER: "축구",
   BASEBALL: "야구",
@@ -25,4 +30,10 @@ export const SPORTS_CATEGORY_TEXT: Text = {
 export const MATCH_TYPE_TEXT: Text = {
   TEAM_MATCH: "팀전",
   INDIVIDUAL_MATCH: "개인전",
+};
+
+export const MATCH_STATUS_TEXT: Text = {
+  WAITING: "모집 중",
+  IN_GAME: "모집 완료",
+  END: "경기 완료",
 };

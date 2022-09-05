@@ -10,16 +10,21 @@ export const Container = styled.div`
 
 export const Status = styled.div`
   display: flex;
-  justify-content: space-around;
-  padding: 0 30px;
-  margin-bottom: 50px;
+  justify-content: space-evenly;
+  margin-bottom: 40px;
 `;
 
 export const Info = styled.div``;
 
 export const Title = styled.div`
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 600;
+`;
+
+export const Img = styled.img`
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
 `;
 
 export const UserWrapper = styled.div`
@@ -30,7 +35,7 @@ export const UserWrapper = styled.div`
 
 export const User = styled.div`
   margin-left: 10px;
-  font-size: 24px;
+  font-size: 18px;
 `;
 
 export const Badge = styled.div`
@@ -47,10 +52,11 @@ export const Badge = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
-  margin-top: 50px;
+  margin-top: 30px;
 `;
 export const ItemWrapper = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 export const TeamInfo = styled.div`
@@ -60,35 +66,28 @@ export const TeamInfo = styled.div`
 
 export const Item = styled.div`
   margin-bottom: 5px;
-  font-size: 20px;
+  font-size: 18px;
   width: 150px;
 `;
 
 export const ItemTitle = styled.div`
   margin-bottom: 5px;
   font-weight: 600;
-  font-size: 20px;
-  width: 150px;
-`;
-
-export const Line = styled.hr`
-  width: 63%;
-  height: 2px;
-  background-color: lightgray;
+  font-size: 18px;
+  width: 120px;
 `;
 
 export const Content = styled.div`
   display: flex;
   margin: 0 auto;
-  margin-top: 50px;
   margin-bottom: 80px;
-  width: 900px;
-  height: 500px;
+  width: 650px;
+  height: 350px;
   background-color: #ffff;
   border: 1px solid black;
   border-radius: 20px;
-  padding: 60px;
-  font-size: 20px;
+  padding: 30px;
+  font-size: 18px;
 `;
 
 export const Button = styled.button`
@@ -96,12 +95,38 @@ export const Button = styled.button`
   margin: 0 auto;
   justify-content: center;
   align-items: center;
-  font-size: 25px;
+  font-size: 20px;
   border: none;
-  border-radius: 20px;
-  width: 900px;
-  height: 90px;
+  border-radius: 10px;
+  width: 650px;
+  height: 60px;
   background-color: #89cffd;
   color: white;
   font-weight: 600;
+`;
+
+export const RefuseButton = styled.button`
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  border: none;
+  border-radius: 20px;
+  width: 650px;
+  height: 60px;
+  background-color: red;
+  color: white;
+  font-weight: 600;
+`;
+
+export const InnerWrapper = styled.div`
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Text = styled.div`
+  color: red;
 `;

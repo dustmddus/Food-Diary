@@ -48,7 +48,7 @@ export const validation = ({
   }
 
   if (matchType === "TEAM_MATCH" && !teamId) {
-    errors.teamId = "팀은 선택해주세요.";
+    errors.teamId = "팀을 선택해주세요.";
   }
 
   if (matchType === "INDIVIDUAL_MATCH" && !sportsCategory) {

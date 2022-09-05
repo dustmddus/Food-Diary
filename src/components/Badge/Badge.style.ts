@@ -21,10 +21,14 @@ export const Badge = styled.div<Props>`
   color: ${({ fontColor }) => fontColor};
   background-color: ${({ BadgeType }) => {
     switch (BadgeType) {
-      case "TEAM_MATCH":
+      case "TEAM_MATCH" || "IN_GAME" || "END":
         return "#CCA9DD";
       case "INDIVIDUAL_MATCH":
         return "#A7ED4D";
+      case "DISABLED":
+        return "#7C7C7C";
+      case "REFUSE":
+        return "red";
       default:
         return "#FFD400";
     }

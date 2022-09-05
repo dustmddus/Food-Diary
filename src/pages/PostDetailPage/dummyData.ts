@@ -21,7 +21,7 @@ const dummyData = {
     content: "나랑 함 뜨자. 신청해. 즥여주겠어",
     proposer: {
       id: 0,
-      status: "WAITING",
+      status: "REFUSE",
       content: "string",
     },
   },
