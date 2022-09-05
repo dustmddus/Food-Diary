@@ -21,7 +21,7 @@ const teamDropdownItem = (teams: Team[]) =>
 
 const PostCreatePage = () => {
   const [startDate, setStartDate] = useState(new Date());
-  const [errors, setErrors] = React.useState<Partial<State>>({});
+  const [errors, setErrors] = useState<Partial<State>>({});
   const [teams, setTeams] = useState<Team[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [fisrtSubmit, setFirstSubmit] = useState(true);
@@ -91,7 +91,6 @@ const PostCreatePage = () => {
           navigate("/");
         }
       } catch (e) {
-        console.log(state);
         console.log(e);
       }
     };
