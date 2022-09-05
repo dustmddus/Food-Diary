@@ -24,6 +24,7 @@ const PostCreatePage = () => {
   const [errors, setErrors] = React.useState<Partial<State>>({});
   const [teams, setTeams] = useState<Team[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [fisrtSubmit, setFirstSubmit] = useState(true);
   const [memberNum, setMemberNum] = useState(0);
   const [state, setState] = useState<State>({
     title: "",
@@ -75,6 +76,8 @@ const PostCreatePage = () => {
   };
 
   const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    setFirstSubmit(false);
     const error = validation({ ...state, memberCount: memberNum });
     if (Object.keys(error).length > 0) {
       setErrors(error);
@@ -96,6 +99,12 @@ const PostCreatePage = () => {
   };
 
   useEffect(() => {
+    if (!fisrtSubmit) {
+      setErrors(validation({ ...state, memberCount: memberNum }));
+    }
+  }, [state]);
+
+  useEffect(() => {
     const getTeam = async () => {
       try {
         setIsLoading(true);
@@ -115,7 +124,12 @@ const PostCreatePage = () => {
     <S.Container>
       <S.Title>공고 작성</S.Title>
 
-      <S.Input name="title" onChange={handleChange} placeholder="제목" />
+      <S.Input
+        name="title"
+        onChange={handleChange}
+        value={state.title}
+        placeholder="제목"
+      />
       {errors.title && <S.ErrorText>{errors.title}</S.ErrorText>}
       <S.MatchContent>
         <S.MatchType>
@@ -206,7 +220,6 @@ const PostCreatePage = () => {
             dateString += day;
             setStartDate(date);
             setState({ ...state, matchDate: dateString });
-            console.log(dateString);
           }}
           startDate={startDate}
         />
