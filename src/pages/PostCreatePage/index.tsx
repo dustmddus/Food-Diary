@@ -3,10 +3,14 @@ import * as React from "react";
 import * as S from "./PostCreatePage.style";
 import Dropdown from "src/components/Dropdown";
 import { axiosAuthInstance } from "src/apis/axiosInstances";
-import { SPORTS_CATEGORY_DROPDOWN } from "../../constants/category";
+import {
+  SPORTS_CATEGORY_DROPDOWN,
+  SPORTS_CATEGORY_TEXT,
+} from "../../constants/category";
 import { State, Team } from "./type";
 import "react-datepicker/dist/react-datepicker.css";
-import Text from "src/components/Text";
+import { validation } from "./validation";
+import { useNavigate } from "react-router-dom";
 
 const teamDropdownItem = (teams: Team[]) =>
   teams.map(({ id, name, sportsCategory, memberCount }, idx) => ({
@@ -17,6 +21,7 @@ const teamDropdownItem = (teams: Team[]) =>
 
 const PostCreatePage = () => {
   const [startDate, setStartDate] = useState(new Date());
+  const [errors, setErrors] = React.useState<Partial<State>>({});
   const [teams, setTeams] = useState<Team[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [memberNum, setMemberNum] = useState(0);
@@ -28,6 +33,9 @@ const PostCreatePage = () => {
     participants: "",
     content: "",
   });
+
+  const navigate = useNavigate();
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -47,8 +55,11 @@ const PostCreatePage = () => {
   };
 
   const handleSelectCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const sportsCategory = e.target.value;
-    setState({ ...state, sportsCategory });
+    const value = e.target.value;
+    const category = Object.keys(SPORTS_CATEGORY_TEXT).find(
+      (key) => SPORTS_CATEGORY_TEXT[key] === value
+    );
+    setState({ ...state, sportsCategory: category || "" });
   };
 
   const handleSelectTeam = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -64,9 +75,24 @@ const PostCreatePage = () => {
   };
 
   const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
-    // const submit = async () => {
-    //   const data=
-    // }
+    const error = validation({ ...state, memberCount: memberNum });
+    if (Object.keys(error).length > 0) {
+      setErrors(error);
+      return;
+    }
+    const submit = async () => {
+      try {
+        const res = await axiosAuthInstance.post("/api/matches", state);
+        if (res.status === 200) {
+          alert("공고 작성 완료!");
+          navigate("/");
+        }
+      } catch (e) {
+        console.log(state);
+        console.log(e);
+      }
+    };
+    submit();
   };
 
   useEffect(() => {
@@ -90,6 +116,7 @@ const PostCreatePage = () => {
       <S.Title>공고 작성</S.Title>
 
       <S.Input name="title" onChange={handleChange} placeholder="제목" />
+      {errors.title && <S.ErrorText>{errors.title}</S.ErrorText>}
       <S.MatchContent>
         <S.MatchType>
           <S.Label>개인전</S.Label>
@@ -109,6 +136,7 @@ const PostCreatePage = () => {
             onChange={handleChange}
           />
         </S.MatchType>
+        {errors.matchType && <S.ErrorText>{errors.matchType}</S.ErrorText>}
         {state.matchType === "INDIVIDUAL_MATCH" && (
           <>
             <Dropdown
@@ -116,6 +144,9 @@ const PostCreatePage = () => {
               valueList={SPORTS_CATEGORY_DROPDOWN}
               placeholder="종목 선택"
             />
+            {errors.sportsCategory && (
+              <S.ErrorText>{errors.sportsCategory}</S.ErrorText>
+            )}
           </>
         )}
         {state.matchType === "TEAM_MATCH" && (
@@ -126,6 +157,7 @@ const PostCreatePage = () => {
               valueList={teamDropdownItem(teams)}
               placeholder="팀 선택"
             />
+            {errors.teamId && <S.ErrorText>{errors.teamId}</S.ErrorText>}
             {teams.length === 0 && (
               <S.TeamWrapper>
                 <S.AlertText>
@@ -134,7 +166,22 @@ const PostCreatePage = () => {
                 <S.TeamCreateButton>새 팀 만들기</S.TeamCreateButton>
               </S.TeamWrapper>
             )}
-            {teams.length !== 0 && <S.Input placeholder="인원" />}
+            {teams.length !== 0 && (
+              <>
+                <S.Input
+                  type="number"
+                  name="participants"
+                  min="1"
+                  max={memberNum}
+                  onChange={handleChange}
+                  value={state.participants as number}
+                  placeholder="경기 인원"
+                />
+                {errors.participants && (
+                  <S.ErrorText>{errors.participants}</S.ErrorText>
+                )}
+              </>
+            )}
           </>
         )}
       </S.MatchContent>
@@ -144,11 +191,33 @@ const PostCreatePage = () => {
           dateFormat="yyyy-MM-dd"
           minDate={new Date()}
           selected={startDate}
-          onChange={(date: any) => setStartDate(date)}
+          onChange={(date: any) => {
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+            let dateString = year + "-";
+            if (month < 10) {
+              dateString += "0";
+            }
+            dateString += month + "-";
+            if (day < 10) {
+              dateString += "0";
+            }
+            dateString += day;
+            setStartDate(date);
+            setState({ ...state, matchDate: dateString });
+            console.log(dateString);
+          }}
           startDate={startDate}
         />
       </S.DateWrapper>
-      <S.TextArea placeholder="공고 내용을 작성해주세요!" />
+      {errors.matchDate && <S.ErrorText>{errors.matchDate}</S.ErrorText>}
+      <S.TextArea
+        name="content"
+        onChange={handleChange}
+        placeholder="공고 내용을 작성해주세요!"
+      />
+      {errors.content && <S.ErrorText>{errors.content}</S.ErrorText>}
       <S.SubmitButton onClick={handleSubmit}>작성 완료</S.SubmitButton>
     </S.Container>
   );

@@ -13,7 +13,7 @@ const SignUpForm = () => {
   const [isOpenLoginModal, setOpenLoginModal] = useRecoilState(LoginModal);
 
   const navigate = useNavigate();
-  //재렌더링 위한 상태
+  //리렌더링 위한 상태
   const [checked, setChecked] = useState(false);
   const [isDuplicate, setIsDuplicate] = useState({
     username: false,

@@ -9,7 +9,7 @@ export interface State {
   title: string;
   matchType: string;
   sportsCategory: string;
-  teamId?: number;
+  teamId?: number | string;
   matchDate: string;
   participants: number | string;
   content: string;

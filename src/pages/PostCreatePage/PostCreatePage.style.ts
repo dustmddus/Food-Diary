@@ -74,6 +74,12 @@ export const TeamWrapper = styled.div`
   align-items: center;
 `;
 
+export const ErrorText = styled.div`
+  color: red;
+  margin-top: 10px;
+  font-size: 16px;
+`;
+
 export const AlertText = styled.div`
   margin-top: 25px;
   color: red;
