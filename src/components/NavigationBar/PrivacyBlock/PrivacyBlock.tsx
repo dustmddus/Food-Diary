@@ -4,11 +4,13 @@ import Alarm from "../../../assets/alarm.svg";
 import Avatar from "../../../assets/avatar.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 import Text from "src/components/Text";
+import { Address, kakaoMapApi } from "../../../apis/kakaoMapApi";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { LocationModal } from "src/recoil/modal";
 import { axiosAuthInstance } from "src/apis/axiosInstances";
 import { loginStatus } from "src/recoil/authentication";
 import { userLocation } from "src/recoil/user";
+import { userInfo } from "src/recoil/user";
 
 const PrivacyBlock = () => {
   const location = useLocation();
@@ -16,8 +18,18 @@ const PrivacyBlock = () => {
   const [showAlarm, setShowAlarm] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [isLogin, setIsLogin] = useRecoilState(loginStatus);
-  const locationName = useRecoilValue(userLocation);
-
+  const user = useRecoilValue(userInfo);
+  const [locationName, setLocationName] = useRecoilState(userLocation);
+  const [kakaoLoading, setKakaoLoading] = useState<boolean>(true);
+  const [address, setAddress] = useState<Address>({
+    address_name: "",
+    region_1depth_name: "",
+    region_2depth_name: "",
+    region_3depth_name: "",
+    mountain_yn: "",
+    main_address_no: "",
+    sub_address_no: "",
+  });
   const [isOpenLocationModal, setOpenLocationModal] =
     useRecoilState(LocationModal);
 
@@ -51,13 +63,32 @@ const PrivacyBlock = () => {
   };
 
   useEffect(() => {
+    setKakaoLoading(true);
+    async function fetchAddress() {
+      if (user.latitude && user.longitude) {
+        await kakaoMapApi(user.latitude, user.longitude, setAddress);
+        setKakaoLoading(false);
+      }
+    }
+    fetchAddress();
+    setLocationName(address.region_3depth_name);
+  }, []);
+
+  useEffect(() => {
     setShowAlarm(false);
   }, [location]);
 
   return (
     <S.Container>
       <S.ItemWrapper>
-        <S.Location onClick={setDistance}>{locationName}</S.Location>
+        <S.Location onClick={setDistance}>
+          {" "}
+          {kakaoLoading ? (
+            <Text>설정 중...</Text>
+          ) : (
+            <Text weight="600">{address.region_3depth_name}</Text>
+          )}
+        </S.Location>
 
         <S.Alarm src={Alarm} onClick={handleAlarmClick} />
         {showAlarm && (
