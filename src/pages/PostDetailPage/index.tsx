@@ -84,12 +84,16 @@ const PostDetailPage = () => {
               </S.Item>
             </S.ItemWrapper>
             <S.ItemWrapper>
+              <S.ItemTitle>경기 인원</S.ItemTitle>
+              <S.Item>{postDetail?.participants}</S.Item>
+            </S.ItemWrapper>
+            <S.ItemWrapper>
               <S.ItemTitle>경기 일자</S.ItemTitle>
               <S.Item>{postDetail?.matchDate}</S.Item>
             </S.ItemWrapper>
           </S.ContentWrapper>
         </S.Info>
-        {!isAuthor ? (
+        {isAuthor ? (
           <Badge width="110px" height="40px">
             {/* 여기 드롭다운 디자인하기 */}
             <Dropdown
@@ -119,7 +123,7 @@ const PostDetailPage = () => {
         </Link>
       )}
       {!isAuthor && postDetail?.proposer === null && (
-        <Link to="/proposal">
+        <Link to={`/proposal/${postId}`}>
           <S.Button>신청하기</S.Button>
         </Link>
       )}

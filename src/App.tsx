@@ -43,7 +43,7 @@ const App = () => {
           element={<PrivateRoute component={PersonalDetailPage} />}
         />
         <Route
-          path="/proposal"
+          path="/proposal/:ID"
           element={<PrivateRoute component={ProposalPage} />}
         />
 
