@@ -14,8 +14,9 @@ export const ProfileImg = styled.img`
   width: 100px;
 `;
 
-export const Info = styled.div``;
-export const InfoWrapper = styled.div``;
+export const Info = styled.div`
+  margin-left: 10px;
+`;
 
 export const Description = styled.div`
   display: flex;
