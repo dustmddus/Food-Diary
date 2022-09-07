@@ -14,7 +14,7 @@ const PieChart = ({ data }: Props) => (
   <ResponsivePie
     data={data}
     colors={["#62d2a2", "#FDCF65", "#F19A78"]}
-    margin={{ top: 50, right: 700, bottom: 20, left: 200 }}
+    margin={{ top: 50, right: 140, bottom: 20, left: 0 }}
     innerRadius={0.5}
     padAngle={4}
     cornerRadius={4}
@@ -38,7 +38,7 @@ const PieChart = ({ data }: Props) => (
     theme={{
       legends: {
         text: {
-          fontSize: 18,
+          fontSize: 16,
           fill: "#000000",
         },
       },
@@ -48,7 +48,7 @@ const PieChart = ({ data }: Props) => (
         anchor: "right",
         direction: "column",
         justify: false,
-        translateX: 130,
+        translateX: 50,
         translateY: 0,
         itemsSpacing: 16,
         itemWidth: 100,

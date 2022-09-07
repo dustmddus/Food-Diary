@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  height: 350px;
+  height: 300px;
   background-color: #f2f2f2;
 `;
 
@@ -35,7 +35,7 @@ export const FooterCopyright = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 60px;
+  height: 40px;
   background-color: #ffd400;
 `;
 
@@ -43,5 +43,5 @@ export const Copyright = styled.p`
   width: fit-content;
   margin: 0 auto;
   color: white;
-  font-size: 14px;
+  font-size: 12px;
 `;
