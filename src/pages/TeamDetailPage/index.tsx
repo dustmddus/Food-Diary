@@ -3,7 +3,6 @@ import Avatar from "../../assets/avatar.svg";
 import Best from "../../assets/best.svg";
 import Good from "../../assets/good.svg";
 import Bad from "../../assets/bad.svg";
-import { dummyData } from "./dummyData";
 import Text from "src/components/Text";
 import MatchResultChart from "src/components/MatchResultChart";
 import { Link, useLocation } from "react-router-dom";
@@ -17,7 +16,6 @@ import { userInfo } from "src/recoil/user";
 import { SPORTS_CATEGORY_TEXT } from "src/constants/category";
 
 const TeamDetailPage = () => {
-  const { data } = dummyData;
   const user = useRecoilValue(userInfo);
   const location = useLocation();
   const [state, setState] = useState<TeamProfile>();
