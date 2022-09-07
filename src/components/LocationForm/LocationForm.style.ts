@@ -19,18 +19,7 @@ export const Content = styled.div`
   align-items: center;
 `;
 
-export const Button = styled.button`
-  margin-top: 80px;
-  width: 150px;
-  height: 45px;
-  border: 10px;
-  background-color: #89cffd;
-  border-radius: 10px;
-  margin-top: 40px;
-  color: white;
-  font-size: 16px;
-`;
-
 export const SliderWrapper = styled.div`
   text-align: center;
+  margin-bottom: 40px;
 `;

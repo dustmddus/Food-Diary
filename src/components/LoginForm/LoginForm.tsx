@@ -28,6 +28,7 @@ const LoginForm = () => {
           username,
           password,
         });
+        console.log(user);
         setUser(user);
         if (user.searchDistance === null) {
           console.log(user.searchDistance);

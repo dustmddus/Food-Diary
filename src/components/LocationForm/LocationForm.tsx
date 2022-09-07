@@ -9,6 +9,7 @@ import { userInfo, userLocation } from "src/recoil/user";
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from "recoil";
 import { LocationModal } from "src/recoil/modal";
 import { axiosAuthInstance } from "src/apis/axiosInstances";
+import Button from "../Button";
 
 const LocationForm = () => {
   const distance = useRef<number>(5);
@@ -103,9 +104,17 @@ const LocationForm = () => {
       <S.SliderWrapper>
         <DistanceSlider setDistance={setDistance} distance={distance.current} />
       </S.SliderWrapper>
-      <S.Button onClick={handleSubmit} disabled={kakaoLoading}>
+      <Button
+        buttonType="SUBMIT"
+        width="150px"
+        height="45px"
+        borderRadius="10px"
+        fontSize="16px"
+        onClick={handleSubmit}
+        disabled={kakaoLoading}
+      >
         설정 완료
-      </S.Button>
+      </Button>
     </S.Container>
   );
 };

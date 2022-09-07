@@ -47,25 +47,10 @@ export const TextArea = styled.textarea`
   width: 700px;
   height: 300px;
   margin-top: 20px;
+  margin-bottom: 50px;
   font-size: 20px;
   padding: 30px;
   border-radius: 10px;
-`;
-
-export const SubmitButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  width: 700px;
-  height: 60px;
-  margin-top: 50px;
-  border-radius: 20px;
-  border: none;
-  background-color: #89cffd;
-  font-size: 20px;
-  color: white;
-  font-weight: 600;
 `;
 
 export const TeamWrapper = styled.div`

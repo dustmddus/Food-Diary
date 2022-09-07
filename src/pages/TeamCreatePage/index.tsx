@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosAuthInstance } from "src/apis/axiosInstances";
+import Button from "src/components/Button";
 import Dropdown from "src/components/Dropdown";
 import {
   SPORTS_CATEGORY_DROPDOWN,
@@ -93,7 +94,9 @@ const TeamCreatePage = () => {
         placeholder="팀을 소개해주세요!"
       />
       {errors.description && <S.ErrorText>{errors.description}</S.ErrorText>}
-      <S.SubmitButton onClick={handleSubmit}>팀 생성</S.SubmitButton>
+      <Button width="600px" buttonType="SUBMIT" onClick={handleSubmit}>
+        팀 생성
+      </Button>
     </S.Container>
   );
 };

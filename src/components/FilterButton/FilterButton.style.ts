@@ -13,4 +13,5 @@ export const FilterButton = styled.button<StyleProps>`
   background-color: ${({ active }) => (active ? "#FFD400" : "#D9D9D9")};
   text-align: center;
   font-size: 16px;
+  cursor: pointer;
 `;

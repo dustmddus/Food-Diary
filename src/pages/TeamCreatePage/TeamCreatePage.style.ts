@@ -34,25 +34,10 @@ export const TextArea = styled.textarea`
   width: 600px;
   height: 300px;
   margin-top: 30px;
+  margin-bottom: 50px;
   font-size: 18px;
   padding: 30px;
   border-radius: 20px;
-`;
-
-export const SubmitButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  width: 600px;
-  height: 60px;
-  margin-top: 50px;
-  border-radius: 20px;
-  border: none;
-  background-color: #89cffd;
-  font-size: 20px;
-  color: white;
-  font-weight: 600;
 `;
 
 export const ErrorText = styled.div`

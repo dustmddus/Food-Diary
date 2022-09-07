@@ -73,7 +73,6 @@ const ProposalPage = () => {
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
     setState({ ...state, content: value });
-    console.log(state);
   };
 
   const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {

@@ -11,6 +11,7 @@ import { State, Team } from "./type";
 import "react-datepicker/dist/react-datepicker.css";
 import { validation } from "./validation";
 import { useNavigate } from "react-router-dom";
+import Button from "src/components/Button";
 
 const teamDropdownItem = (teams: Team[]) =>
   teams.map(({ id, name, sportsCategory, memberCount }, idx) => ({
@@ -230,7 +231,10 @@ const PostCreatePage = () => {
         placeholder="공고 내용을 작성해주세요!"
       />
       {errors.content && <S.ErrorText>{errors.content}</S.ErrorText>}
-      <S.SubmitButton onClick={handleSubmit}>작성 완료</S.SubmitButton>
+      {/* <S.SubmitButton onClick={handleSubmit}>작성 완료</S.SubmitButton> */}
+      <Button buttonType="SUBMIT" onClick={handleSubmit}>
+        작성 완료
+      </Button>
     </S.Container>
   );
 };
