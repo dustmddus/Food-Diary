@@ -5,7 +5,7 @@ interface Props {
   size?: string;
   color?: string;
   weight?: string | number;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 const defaultProps = {

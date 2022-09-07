@@ -7,7 +7,7 @@ interface Props {
   weight?: string | number;
 }
 
-export const Text = styled.span`
+export const Text = styled.div`
   font-size: ${({ size }: Props) => size};
   font-weight: ${({ weight }: Props) => weight};
   color: ${({ color }: Props) => color};

@@ -61,9 +61,9 @@ const TeamDetailPage = () => {
           <S.ButtonWrapper>
             <Button
               buttonType="SUBMIT"
-              width="120px"
-              height="40px"
-              fontSize="16px"
+              width="100px"
+              height="35px"
+              fontSize="14px"
               borderRadius="5px"
             >
               프로필 수정
