@@ -11,15 +11,18 @@ export const ItemWrapper = styled.div`
 
 export const Alarm = styled.img`
   width: 22px;
+  cursor: pointer;
 `;
 
 export const Avatar = styled.img`
   width: 30px;
+  cursor: pointer;
 `;
 
 export const Location = styled.span`
   font-size: 15px;
   font-weight: bold;
+  cursor: pointer;
 `;
 
 export const AlarmWrapper = styled.div`

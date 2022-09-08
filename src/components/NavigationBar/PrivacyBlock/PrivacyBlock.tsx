@@ -45,6 +45,10 @@ const PrivacyBlock = () => {
     setShowProfile((prev) => !prev);
   };
 
+  const handleMyPage = () => {
+    navigate(`/personal/profile/${user.id}`);
+  };
+
   const handleLogout = () => {
     (async () => {
       try {
@@ -101,7 +105,7 @@ const PrivacyBlock = () => {
         <S.Avatar onClick={handleProfileClick} src={Avatar} />
         {showProfile && (
           <S.ProfileWrapper>
-            <Text>내 정보</Text>
+            <Text onClick={handleMyPage}>내 정보</Text>
             <S.Divider />
             <Text>내 글 보기</Text>
             <S.Divider />

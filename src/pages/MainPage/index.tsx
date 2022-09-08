@@ -1,5 +1,6 @@
 import PostItem from "../../components/PostItem";
 import mainImg from "../../assets/mainImg.svg";
+import loginGuide from "../../assets/login_guide.png";
 import * as S from "./MainPage.style";
 import { Link } from "react-router-dom";
 import { Values } from "../PostListPage/type";
@@ -108,7 +109,7 @@ const MainPage = () => {
           </>
         ) : (
           <>
-            <S.InfoWrapper>여기에 로그인 안내 들어감다.</S.InfoWrapper>
+            <img width="550px" src={loginGuide} />
           </>
         )}
       </S.Container>
