@@ -28,7 +28,9 @@ export const Location = styled.span`
 export const AlarmWrapper = styled.div`
   position: absolute;
   width: 200px;
+  height: 250px;
   max-width: 200px;
+  min-width: 0;
   overflow: auto;
   padding: 15px;
   top: 90%;
@@ -64,4 +66,51 @@ export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const ButtonWrapper = styled.div`
+  margin-top: 10px;
+`;
+
+export const AlarmListWrapper = styled.div``;
+
+export const TeamName = styled.span`
+  font-size: 14px;
+  font-weight: bold;
+`;
+
+export const Item = styled.span`
+  font-size: 14px;
+`;
+
+export const InfoWrapper = styled.div`
+  display: flex;
+  padding: 5px 0;
+  align-items: center;
+`;
+
+export const Img = styled.img`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 5px;
+`;
+
+export const TextWrapper = styled.div`
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const Noti = styled.img`
+  width: 50px;
+  margin-bottom: 10px;
+`;
+
+export const EmptyList = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25%;
 `;

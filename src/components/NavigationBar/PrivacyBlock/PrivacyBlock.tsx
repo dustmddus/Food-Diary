@@ -1,10 +1,10 @@
 import * as S from "./PrivacyBlock.style";
 import { useEffect, useState } from "react";
-import Alarm from "../../../assets/alarm.svg";
-import Avatar from "../../../assets/avatar.svg";
-import { useLocation, useNavigate } from "react-router-dom";
+import Alarm from "src/assets/alarm.svg";
+import Avatar from "src/assets/avatar.svg";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Text from "src/components/Text";
-import { Address, kakaoMapApi } from "../../../apis/kakaoMapApi";
+import { Address, kakaoMapApi } from "src/apis/kakaoMapApi";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { LocationModal } from "src/recoil/modal";
 import { axiosAuthInstance } from "src/apis/axiosInstances";
@@ -12,6 +12,9 @@ import { loginStatus } from "src/recoil/authentication";
 import { userLocation } from "src/recoil/user";
 import { userInfo } from "src/recoil/user";
 import useClickAway from "src/hooks/useClickAway";
+import Button from "src/components/Button";
+import Notification from "src/assets/notification_off.png";
+import { Response, Values } from "./type";
 
 const PrivacyBlock = () => {
   const location = useLocation();
@@ -31,6 +34,15 @@ const PrivacyBlock = () => {
     main_address_no: "",
     sub_address_no: "",
   });
+  const [alarm, setAlarm] = useState<Response>({
+    values: [],
+    hasNext: false,
+    cursor: {
+      createdAt: "",
+      id: null,
+    },
+  });
+
   const [isOpenLocationModal, setOpenLocationModal] =
     useRecoilState(LocationModal);
 
@@ -46,6 +58,24 @@ const PrivacyBlock = () => {
 
   const handleAlarmClick = () => {
     setShowAlarm((prev) => !prev);
+    if (!showAlarm) {
+      const getAlarmList = async () => {
+        try {
+          const {
+            data: { data },
+          } = await axiosAuthInstance.get("/api/teams/invitations", {
+            params: {
+              size: 6,
+              status: "WAITING",
+            },
+          });
+          setAlarm(data);
+        } catch (e) {
+          console.log(e);
+        }
+      };
+      getAlarmList();
+    }
   };
 
   const handleProfileClick = () => {
@@ -87,6 +117,7 @@ const PrivacyBlock = () => {
 
   useEffect(() => {
     setShowAlarm(false);
+    setShowProfile(false);
   }, [location]);
 
   return (
@@ -104,9 +135,42 @@ const PrivacyBlock = () => {
         <S.Alarm src={Alarm} onClick={handleAlarmClick} />
         {showAlarm && (
           <S.AlarmWrapper>
-            <Text size="13px">알림 왔슈👀</Text>
+            <Text size="13px">초대 알림👀</Text>
             <S.Divider />
-            <span>여기 알람</span>
+            {alarm.values.map((item: Values) => (
+              <S.AlarmListWrapper key={item.teamId}>
+                <S.InfoWrapper>
+                  {item.logoImageUrl ? (
+                    <S.Img src={item.logoImageUrl} />
+                  ) : (
+                    <S.Img src={Avatar} />
+                  )}
+                  <S.TextWrapper>
+                    <S.TeamName>{item.name}팀</S.TeamName>
+                    <S.Item>의 초대</S.Item>
+                  </S.TextWrapper>
+                </S.InfoWrapper>
+              </S.AlarmListWrapper>
+            ))}
+            {alarm.values.length !== 0 ? (
+              <S.ButtonWrapper>
+                <Link to="/">
+                  <Button
+                    width="165px"
+                    height="25px"
+                    fontSize="14px"
+                    buttonType="yellow"
+                  >
+                    알림 목록
+                  </Button>
+                </Link>
+              </S.ButtonWrapper>
+            ) : (
+              <S.EmptyList>
+                <S.Noti src={Notification} />
+                <Text weight={600}>알림이 없습니다.</Text>
+              </S.EmptyList>
+            )}
           </S.AlarmWrapper>
         )}
         <S.Avatar onClick={handleProfileClick} src={Avatar} />
