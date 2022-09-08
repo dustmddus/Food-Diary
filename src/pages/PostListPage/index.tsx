@@ -9,6 +9,7 @@ import { sportsCategory } from "src/recoil/category";
 import { userInfo } from "src/recoil/user";
 import { AxiosResponse } from "axios";
 import { Response } from "./type";
+import loading from "src/assets/loading.gif";
 
 const PostListPage = () => {
   const category = useRecoilValue(sportsCategory);
@@ -58,18 +59,19 @@ const PostListPage = () => {
       <S.Input placeholder="검색어를 입력하세요" />
       <FilterList />
       <S.ListContainer>
-        {state.values.map((i: Values) => (
-          <PostItem
-            id={i.id}
-            key={i.id}
-            title={i.title}
-            distance={i.distance}
-            date={i.createdAt}
-            category={i.category}
-            matchType={i.matchType}
-          />
-        ))}
-        {isLoading && <span>여기에 로딩 이미지 들어감다</span>}
+        {!isLoading &&
+          state.values.map((i: Values) => (
+            <PostItem
+              id={i.id}
+              key={i.id}
+              title={i.title}
+              distance={i.distance}
+              date={i.createdAt}
+              category={i.category}
+              matchType={i.matchType}
+            />
+          ))}
+        {isLoading && <S.Img width="100px" src={loading} />}
       </S.ListContainer>
     </S.Container>
   );

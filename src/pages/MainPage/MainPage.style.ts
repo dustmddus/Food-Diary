@@ -31,3 +31,7 @@ export const MoreButton = styled.button`
   height: 50px;
   margin-bottom: 100px;
 `;
+
+export const Img = styled.img`
+  margin-top: 20px;
+`;

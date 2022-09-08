@@ -14,6 +14,7 @@ import { loginStatus } from "src/recoil/authentication";
 import { axiosAuthInstance } from "src/apis/axiosInstances";
 import { userInfo } from "src/recoil/user";
 import { AxiosResponse } from "axios";
+import loading from "src/assets/loading.gif";
 
 const MainPage = () => {
   const category = useRecoilValue(sportsCategory);
@@ -86,17 +87,18 @@ const MainPage = () => {
             ) : (
               <>
                 <S.Content>
-                  {state.values.map((i: Values) => (
-                    <PostItem
-                      id={i.id}
-                      key={i.id}
-                      title={i.title}
-                      distance={i.distance}
-                      date={i.createdAt}
-                      category={i.category}
-                      matchType={i.matchType}
-                    />
-                  ))}
+                  {!isLoading &&
+                    state.values.map((i: Values) => (
+                      <PostItem
+                        id={i.id}
+                        key={i.id}
+                        title={i.title}
+                        distance={i.distance}
+                        date={i.createdAt}
+                        category={i.category}
+                        matchType={i.matchType}
+                      />
+                    ))}
                 </S.Content>
                 {!isLoading && (
                   <Link to="/postList">
@@ -105,7 +107,7 @@ const MainPage = () => {
                 )}
               </>
             )}
-            {isLoading && <span>여기에 로딩 이미지 들어감다</span>}
+            {isLoading && <S.Img width="100px" src={loading} />}
           </>
         ) : (
           <>

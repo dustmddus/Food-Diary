@@ -25,3 +25,7 @@ export const Input = styled.input`
 `;
 
 export const ListContainer = styled.div``;
+
+export const Img = styled.img`
+  margin-top: 40px;
+`;
