@@ -14,4 +14,7 @@ export const FilterButton = styled.button<StyleProps>`
   text-align: center;
   font-size: 16px;
   cursor: pointer;
+  &:hover {
+    background-color: #ffd400;
+  }
 `;

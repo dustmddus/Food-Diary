@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 70px;
 `;
 
 export const ImgWrapper = styled.div`
@@ -29,19 +30,4 @@ export const MoreButton = styled.button`
   width: 150px;
   height: 50px;
   margin-bottom: 100px;
-`;
-
-export const InfoWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 30px;
-  margin-top: 30px;
-  margin-bottom: 100px;
-  width: 800px;
-  height: 500px;
-  z-index: 1;
-  background-color: #89cffd;
-  box-shadow: 2px 7px 15px 8px rgba(0, 0, 0, 0.3);
 `;

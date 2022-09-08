@@ -11,6 +11,7 @@ import TeamCreatePage from "./pages/TeamCreatePage";
 import TeamDetailPage from "./pages/TeamDetailPage";
 import PersonalDetailPage from "./pages/PersonalDetailPage";
 import ProposalPage from "./pages/ProposalPage";
+import InvitePage from "./pages/InvitePage";
 
 const App = () => {
   return (
@@ -45,6 +46,10 @@ const App = () => {
         <Route
           path="/proposal/:ID"
           element={<PrivateRoute component={ProposalPage} />}
+        />
+        <Route
+          path="/invite/:ID"
+          element={<PrivateRoute component={InvitePage} />}
         />
 
         {/* <Route path="/team/detail/:ID" element={<TeamDetailPage />} /> */}

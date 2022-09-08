@@ -103,15 +103,19 @@ const TeamDetailPage = () => {
               <Text size="20px" weight="600">
                 팀원
               </Text>
-              <Button
-                buttonType="SUBMIT"
-                width="100px"
-                height="35px"
-                fontSize="14px"
-                borderRadius="5px"
-              >
-                팀원 추가
-              </Button>
+              {isLeader && (
+                <Link to={`/invite/${teamId}`}>
+                  <Button
+                    buttonType="SUBMIT"
+                    width="100px"
+                    height="35px"
+                    fontSize="14px"
+                    borderRadius="5px"
+                  >
+                    팀원 추가
+                  </Button>
+                </Link>
+              )}
             </S.TeamWrapper>
             {state.members.map((i) => (
               <Link to={`/personal/profile/${i.userId}`}>
