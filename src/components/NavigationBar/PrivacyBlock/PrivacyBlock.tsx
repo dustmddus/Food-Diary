@@ -11,6 +11,7 @@ import { axiosAuthInstance } from "src/apis/axiosInstances";
 import { loginStatus } from "src/recoil/authentication";
 import { userLocation } from "src/recoil/user";
 import { userInfo } from "src/recoil/user";
+import useClickAway from "src/hooks/useClickAway";
 
 const PrivacyBlock = () => {
   const location = useLocation();
@@ -32,6 +33,12 @@ const PrivacyBlock = () => {
   });
   const [isOpenLocationModal, setOpenLocationModal] =
     useRecoilState(LocationModal);
+
+  const ref = useClickAway(() => {
+    setShowAlarm(false);
+    setShowProfile(false);
+    setOpenLocationModal(false);
+  });
 
   const setDistance = () => {
     setOpenLocationModal(!isOpenLocationModal);
@@ -83,7 +90,7 @@ const PrivacyBlock = () => {
   }, [location]);
 
   return (
-    <S.Container>
+    <S.Container ref={ref}>
       <S.ItemWrapper>
         <S.Location onClick={setDistance}>
           {" "}
