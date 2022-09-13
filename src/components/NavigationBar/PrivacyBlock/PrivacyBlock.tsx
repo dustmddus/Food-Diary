@@ -22,7 +22,7 @@ const PrivacyBlock = () => {
   const [showAlarm, setShowAlarm] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [isLogin, setIsLogin] = useRecoilState(loginStatus);
-  const user = useRecoilValue(userInfo);
+  const [user,setUser] = useRecoilState(userInfo);
   const [locationName, setLocationName] = useRecoilState(userLocation);
   const [kakaoLoading, setKakaoLoading] = useState<boolean>(true);
   const [address, setAddress] = useState<Address>({
@@ -92,7 +92,7 @@ const PrivacyBlock = () => {
         await axiosAuthInstance.delete(`/api/users/signout`).then((res) => {
           if (res.status === 200) {
             setShowProfile((prev) => !prev);
-            // 사용자 정보도 지워주기
+            setUser({})
             setIsLogin(false);
           }
         });
