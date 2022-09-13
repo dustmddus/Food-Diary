@@ -11,5 +11,5 @@ export const axiosDefaultInstance = axios.create(axiosDefaultConfig);
 
 export const axiosAuthInstance = axios.create({
   ...axiosDefaultConfig,
-  withCredentials: true,
+  withCredentials: true
 });
