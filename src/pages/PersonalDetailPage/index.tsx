@@ -8,10 +8,10 @@ import MatchResultChart from "src/components/MatchResultChart";
 import { Link, useLocation } from "react-router-dom";
 import Button from "src/components/Button";
 import { useEffect, useState } from "react";
-import { axiosAuthInstance } from "src/apis/axiosInstances";
 import { MatchRecord, PersonalProfile } from "./type";
 import { useRecoilValue } from "recoil";
 import { userInfo } from "src/recoil/user";
+import { getMatchRecord, getUserInfo } from "src/apis/user";
 
 const PersonalDetailPage = () => {
   const user = useRecoilValue(userInfo);
@@ -24,9 +24,7 @@ const PersonalDetailPage = () => {
   useEffect(() => {
     const getPersonalProfile = async () => {
       try {
-        const {
-          data: { data },
-        } = await axiosAuthInstance(`/api/users/${id}`);
+        const data = await getUserInfo(id);
         setState(data);
         if (id === String(user.id)) {
           setIsUser(true);
@@ -35,23 +33,19 @@ const PersonalDetailPage = () => {
         console.log(e);
       }
     };
-    const getMatchRecord = async () => {
+    const getRecord = async () => {
       try {
-        const {
-          data: { data },
-        } = await axiosAuthInstance.get("/api/matches/records", {
-          params: { userId: id },
-        });
+        const data = await getMatchRecord(id);
         setMatchRecord(data);
       } catch (e) {
         console.log(e);
       }
     };
     getPersonalProfile();
-    getMatchRecord();
+    getRecord();
   }, []);
   return (
-    state &&
+    state !== undefined &&
     matchRecord && (
       <S.Container>
         <S.CoverImg />

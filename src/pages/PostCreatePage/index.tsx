@@ -7,11 +7,13 @@ import {
   SPORTS_CATEGORY_DROPDOWN,
   SPORTS_CATEGORY_TEXT,
 } from "../../constants/category";
-import { State, Team } from "./type";
+import { Content, Team } from "./type";
 import "react-datepicker/dist/react-datepicker.css";
 import { validation } from "./validation";
 import { useNavigate } from "react-router-dom";
 import Button from "src/components/Button";
+import { getTeamLeader } from "src/apis/user";
+import { createPost } from "src/apis/post";
 
 const teamDropdownItem = (teams: Team[]) =>
   teams.map(({ id, name, sportsCategory, memberCount }, idx) => ({
@@ -22,12 +24,12 @@ const teamDropdownItem = (teams: Team[]) =>
 
 const PostCreatePage = () => {
   const [startDate, setStartDate] = useState(new Date());
-  const [errors, setErrors] = useState<Partial<State>>({});
+  const [errors, setErrors] = useState<Partial<Content>>({});
   const [teams, setTeams] = useState<Team[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [fisrtSubmit, setFirstSubmit] = useState(true);
   const [memberNum, setMemberNum] = useState(0);
-  const [state, setState] = useState<State>({
+  const [state, setState] = useState<Content>({
     title: "",
     matchType: "",
     sportsCategory: "",
@@ -76,7 +78,7 @@ const PostCreatePage = () => {
     setMemberNum(selectedTeam.memberCount);
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     setFirstSubmit(false);
     const error = validation({ ...state, memberCount: memberNum });
@@ -84,18 +86,15 @@ const PostCreatePage = () => {
       setErrors(error);
       return;
     }
-    const submit = async () => {
-      try {
-        const res = await axiosAuthInstance.post("/api/matches", state);
-        if (res.status === 200) {
-          alert("공고 작성 완료!");
-          navigate("/");
-        }
-      } catch (e) {
-        console.log(e);
+    try {
+      const res = await createPost(state);
+      if (res.status === 200) {
+        alert("공고 작성 완료!");
+        navigate("/");
       }
-    };
-    submit();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {
@@ -108,9 +107,7 @@ const PostCreatePage = () => {
     const getTeam = async () => {
       try {
         setIsLoading(true);
-        const {
-          data: { data },
-        } = await axiosAuthInstance.get("/api/teams/me/leader");
+        const data = await getTeamLeader();
         setTeams(data);
         setIsLoading(false);
       } catch (e) {

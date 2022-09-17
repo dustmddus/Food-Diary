@@ -1,15 +1,15 @@
 import React, { lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { NavigationBar } from "./components";
-import { MainPage } from "./pages";
+import MainPage from "./pages/MainPage";
 import Footer from "./components/Footer/Footer";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import PostListPage from "./pages/PostListPage";
+import PersonalDetailPage from "./pages/PersonalDetailPage";
 import PostDetailPage from "./pages/PostDetailPage";
 import PostCreatePage from "./pages/PostCreatePage";
 import TeamCreatePage from "./pages/TeamCreatePage";
 import TeamDetailPage from "./pages/TeamDetailPage";
-import PersonalDetailPage from "./pages/PersonalDetailPage";
 import ProposalPage from "./pages/ProposalPage";
 import InvitePage from "./pages/InvitePage";
 
@@ -51,8 +51,6 @@ const App = () => {
           path="/invite/:ID"
           element={<PrivateRoute component={InvitePage} />}
         />
-
-        {/* <Route path="/team/detail/:ID" element={<TeamDetailPage />} /> */}
       </Routes>
       <Footer />
     </BrowserRouter>

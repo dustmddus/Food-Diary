@@ -8,6 +8,7 @@ import { axiosAuthInstance } from "src/apis/axiosInstances";
 import { userInfo } from "src/recoil/user";
 import { AxiosError } from "axios";
 import { loginStatus } from "src/recoil/authentication";
+import { userLogin } from "src/apis/auth";
 
 const LoginForm = () => {
   const setUser = useSetRecoilState(userInfo);
@@ -17,35 +18,27 @@ const LoginForm = () => {
   const [isOpenSignUpModal, setOpenSignUpModal] = useRecoilState(SignUpModal);
   const [isLogin, setIsLogin] = useRecoilState(loginStatus);
 
-  const onSubmit = (values: Values, e?: FormEvent<HTMLFormElement>) => {
-    const { username, password } = values;
+  const onSubmit = async (values: Values, e?: FormEvent<HTMLFormElement>) => {
+    const { userId, password } = values;
     e?.preventDefault();
-    const signin = async () => {
-      try {
-        const {
-          data: { data: user },
-        } = await axiosAuthInstance.post<Response<User>>("/api/users/signin", {
-          username,
-          password,
-        });
-        setUser(user);
-        if (user.searchDistance === null) {
-          console.log(user.searchDistance);
-          setOpenLoginModal(!isOpenLoginModal);
-          setOpenLocationModal(!isOpenLocationModal);
-        } else {
-          setOpenLoginModal(!isOpenLoginModal);
-        }
-        setIsLogin(true);
-      } catch (error) {
-        const { response } = error as AxiosError;
-        const errorCode = (response?.data as ErrorResponse).code;
-        if (errorCode === "A0001" || errorCode === "V0001") {
-          window.alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-        }
+    try {
+      const userInfo = await userLogin(userId, password);
+      setUser(userInfo);
+      if (userInfo.searchDistance === null) {
+        console.log(userInfo.searchDistance);
+        setOpenLoginModal(!isOpenLoginModal);
+        setOpenLocationModal(!isOpenLocationModal);
+      } else {
+        setOpenLoginModal(!isOpenLoginModal);
       }
-    };
-    signin();
+      setIsLogin(true);
+    } catch (error) {
+      const { response } = error as AxiosError;
+      const errorCode = (response?.data as ErrorResponse).code;
+      if (errorCode === "A0001" || errorCode === "V0001") {
+        window.alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+      }
+    }
   };
 
   const handleSignUpClick = () => {
@@ -55,11 +48,11 @@ const LoginForm = () => {
 
   const { values, handleChange, handleSubmit } = useForm<Values>({
     initialValue: {
-      username: "",
+      userId: "",
       password: "",
     },
     initialError: {
-      username: "",
+      userId: "",
       password: "",
     },
     onSubmit,
@@ -71,8 +64,8 @@ const LoginForm = () => {
         <S.Title>로그인</S.Title>
 
         <S.Input
-          name="username"
-          value={values.username}
+          name="userId"
+          value={values.userId}
           onChange={handleChange}
           placeholder="아이디를 입력하세요"
         />

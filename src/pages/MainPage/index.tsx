@@ -11,10 +11,10 @@ import { SPORTS_CATEGORY_DROPDOWN } from "src/constants/category";
 import { useEffect, useState } from "react";
 import { Response } from "../PostListPage/type";
 import { loginStatus } from "src/recoil/authentication";
-import { axiosAuthInstance } from "src/apis/axiosInstances";
 import { userInfo } from "src/recoil/user";
 import { AxiosResponse } from "axios";
 import loading from "src/assets/loading.gif";
+import { getAllPost } from "src/apis/post";
 
 const MainPage = () => {
   const category = useRecoilValue(sportsCategory);
@@ -36,15 +36,7 @@ const MainPage = () => {
     const getPost = async () => {
       try {
         setIsLoading(true);
-        const res = await axiosAuthInstance.get("/api/matches", {
-          params: {
-            size: 10,
-            category,
-            status: "WAITING",
-            userId: "",
-            distance: user.searchDistance,
-          },
-        });
+        const res = await getAllPost(category, user.searchDistance);
         const data = (res.data as AxiosResponse).data as Response;
         const latestPost = data.values
           .sort((a, b) => {
@@ -64,7 +56,9 @@ const MainPage = () => {
         console.log(e);
       }
     };
-    getPost();
+    if (isLogin) {
+      getPost();
+    }
   }, [category]);
 
   return (

@@ -13,6 +13,7 @@ import {
   MATCH_STATUS_DROPDOWN,
   MATCH_STATUS_TEXT,
 } from "src/constants/category";
+import { getPostDetail } from "src/apis/post";
 
 const PostDetailPage = () => {
   const user = useRecoilValue(userInfo);
@@ -25,10 +26,10 @@ const PostDetailPage = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    const getPostDetail = async () => {
+    const getDetail = async () => {
       try {
         setIsLoading(true);
-        const res = await axiosAuthInstance.get(`/api/matches/${postId}`);
+        const res = await getPostDetail(postId);
         const data = (res.data as AxiosResponse).data as PostDetail;
         setPostDetail(data);
         setIsAuthor(data.author.id === user.id);
@@ -38,7 +39,7 @@ const PostDetailPage = () => {
         console.log(e);
       }
     };
-    getPostDetail();
+    getDetail();
   }, []);
 
   return (

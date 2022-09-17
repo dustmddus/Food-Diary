@@ -5,6 +5,8 @@ import { axiosAuthInstance } from "src/apis/axiosInstances";
 import { useNavigate, useParams } from "react-router-dom";
 import { PostDetail } from "../PostDetailPage/type";
 import { validation } from "./validation";
+import { getTeamLeader } from "src/apis/user";
+import { getPostDetail } from "src/apis/post";
 
 interface Team {
   id: number;
@@ -48,14 +50,10 @@ const ProposalPage = () => {
   useEffect(() => {
     const getMyTeam = async () => {
       try {
-        const res = await axiosAuthInstance.get(
-          `/api/matches/${param.ID as string}`
-        );
+        const res = await getPostDetail(param.ID);
         setPostDetail(res.data.data);
         (async () => {
-          const {
-            data: { data },
-          } = await axiosAuthInstance.get(`/api/teams/me/leader`);
+          const data = await getTeamLeader();
           setTeams(
             data.filter(
               (item: { sportsCategory: string }) =>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosAuthInstance } from "src/apis/axiosInstances";
+import { createTeam } from "src/apis/team";
 import Button from "src/components/Button";
 import Dropdown from "src/components/Dropdown";
 import {
@@ -47,7 +48,7 @@ const TeamCreatePage = () => {
     }
     const submit = async () => {
       try {
-        const res = await axiosAuthInstance.post("/api/teams", state);
+        const res = await createTeam(state);
         if (res.status === 200) {
           alert("팀 생성 완료!");
           // 팀 프로필로 이동

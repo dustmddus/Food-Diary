@@ -10,6 +10,7 @@ import { userInfo } from "src/recoil/user";
 import { AxiosResponse } from "axios";
 import { Response } from "./type";
 import loading from "src/assets/loading.gif";
+import { getAllPost } from "src/apis/post";
 
 const PostListPage = () => {
   const category = useRecoilValue(sportsCategory);
@@ -29,15 +30,7 @@ const PostListPage = () => {
     const getPost = async () => {
       try {
         setIsLoading(true);
-        const res = await axiosAuthInstance.get("/api/matches", {
-          params: {
-            size: 10,
-            category,
-            status: "WAITING",
-            userId: "",
-            distance: user.searchDistance,
-          },
-        });
+        const res = await getAllPost(category, user.searchDistance);
         const data = (res.data as AxiosResponse).data as Response;
 
         setState({

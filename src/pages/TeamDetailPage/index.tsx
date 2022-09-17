@@ -9,11 +9,11 @@ import { Link, useLocation } from "react-router-dom";
 import Badge from "src/components/Badge";
 import Button from "src/components/Button";
 import { useEffect, useState } from "react";
-import { axiosAuthInstance } from "src/apis/axiosInstances";
 import { TeamProfile } from "./type";
 import { useRecoilValue } from "recoil";
 import { userInfo } from "src/recoil/user";
 import { SPORTS_CATEGORY_TEXT } from "src/constants/category";
+import { getTeamDetail } from "src/apis/team";
 
 const TeamDetailPage = () => {
   const user = useRecoilValue(userInfo);
@@ -22,13 +22,10 @@ const TeamDetailPage = () => {
   const [isLeader, setIsLeader] = useState(false);
 
   const teamId = location.pathname.split("/")[3];
-
   useEffect(() => {
     const getTeamProfile = async () => {
       try {
-        const {
-          data: { data },
-        } = await axiosAuthInstance.get(`/api/teams/${teamId}`);
+        const data = await getTeamDetail(teamId);
         setState(data);
         if (data.leader.id === user.id) {
           setIsLeader(true);
@@ -41,7 +38,7 @@ const TeamDetailPage = () => {
   }, []);
 
   return (
-    state && (
+    state !== undefined && (
       <S.Container>
         <S.CoverImg />
         <S.Description>
@@ -119,7 +116,7 @@ const TeamDetailPage = () => {
             </S.TeamWrapper>
             {state.members.map((i) => (
               <Link to={`/personal/profile/${i.userId}`}>
-                <S.MemberProfile>
+                <S.MemberProfile key={i.userId}>
                   <S.MemberImg src={Avatar} width="80px" />
                   <Text size="18px">{i.nickname}</Text>
                 </S.MemberProfile>

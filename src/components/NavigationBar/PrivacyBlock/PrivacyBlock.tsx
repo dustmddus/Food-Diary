@@ -5,9 +5,8 @@ import Avatar from "src/assets/avatar.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Text from "src/components/Text";
 import { Address, kakaoMapApi } from "src/apis/kakaoMapApi";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { LocationModal } from "src/recoil/modal";
-import { axiosAuthInstance } from "src/apis/axiosInstances";
 import { loginStatus } from "src/recoil/authentication";
 import { userLocation } from "src/recoil/user";
 import { userInfo } from "src/recoil/user";
@@ -15,15 +14,17 @@ import useClickAway from "src/hooks/useClickAway";
 import Button from "src/components/Button";
 import Notification from "src/assets/notification_off.png";
 import { Response, Values } from "./type";
+import { userLogout } from "src/apis/auth";
+import { getInvitationList } from "src/apis/invitation";
 
 const PrivacyBlock = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [showAlarm, setShowAlarm] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-  const [isLogin, setIsLogin] = useRecoilState(loginStatus);
-  const [user,setUser] = useRecoilState(userInfo);
-  const [locationName, setLocationName] = useRecoilState(userLocation);
+  const setIsLogin = useSetRecoilState(loginStatus);
+  const [user, setUser] = useRecoilState(userInfo);
+  const setLocationName = useSetRecoilState(userLocation);
   const [kakaoLoading, setKakaoLoading] = useState<boolean>(true);
   const [address, setAddress] = useState<Address>({
     address_name: "",
@@ -56,25 +57,15 @@ const PrivacyBlock = () => {
     setOpenLocationModal(!isOpenLocationModal);
   };
 
-  const handleAlarmClick = () => {
+  const handleAlarmClick = async () => {
     setShowAlarm((prev) => !prev);
     if (!showAlarm) {
-      const getAlarmList = async () => {
-        try {
-          const {
-            data: { data },
-          } = await axiosAuthInstance.get("/api/teams/invitations", {
-            params: {
-              size: 6,
-              status: "WAITING",
-            },
-          });
-          setAlarm(data);
-        } catch (e) {
-          console.log(e);
-        }
-      };
-      getAlarmList();
+      try {
+        const data = await getInvitationList();
+        setAlarm(data);
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
@@ -86,21 +77,17 @@ const PrivacyBlock = () => {
     navigate(`/personal/profile/${user.id}`);
   };
 
-  const handleLogout = () => {
-    (async () => {
-      try {
-        await axiosAuthInstance.delete(`/api/users/signout`).then((res) => {
-          if (res.status === 200) {
-            setShowProfile((prev) => !prev);
-            setUser({})
-            setIsLogin(false);
-          }
-        });
-      } catch (e) {
-        // 에러 처리 필요
-        console.log(e);
+  const handleLogout = async () => {
+    try {
+      const res = await userLogout();
+      if (res.status === 200) {
+        setShowProfile((prev) => !prev);
+        setUser({});
+        setIsLogin(false);
       }
-    })();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {

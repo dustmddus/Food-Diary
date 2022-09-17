@@ -7,6 +7,8 @@ import Button from "src/components/Button";
 import { useRecoilValue } from "recoil";
 import { userInfo } from "src/recoil/user";
 import { useParams } from "react-router-dom";
+import { getUserByNickname } from "src/apis/user";
+import { InviteUser } from "src/apis/invitation";
 
 const InvitePage = () => {
   const param = useParams();
@@ -18,20 +20,15 @@ const InvitePage = () => {
     setNickname(e.target.value);
   };
 
-  const handleInvite = (item: InviteProfile) => {
-    if (user.id === item.id) {
+  const handleInvite = (userItem: InviteProfile) => {
+    if (user.id === userItem.id) {
       alert("본인은 초대할 수 없습니다.");
       return;
     }
-    if (window.confirm(`${item.nickname}을 초대하시겠습니까?`)) {
+    if (window.confirm(`${userItem.nickname}을 초대하시겠습니까?`)) {
       const invitation = async () => {
         try {
-          const res = await axiosAuthInstance.post(
-            `/api/teams/${param.ID}/invitations`,
-            {
-              targetUserId: item.id,
-            }
-          );
+          const res = await InviteUser(param.ID, userItem.id);
           if (res.status === 200) {
             alert("초대 완료!");
           }
@@ -43,20 +40,14 @@ const InvitePage = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (nickname === "") {
       alert("닉네임을 입력해주세요!");
       return;
     }
-    (async () => {
-      const {
-        data: { data },
-      } = await axiosAuthInstance.get(`/api/users`, {
-        params: { nickname: nickname },
-      });
-      setState(data);
-    })();
+    const res = await getUserByNickname(nickname);
+    setState(res);
   };
 
   return (
@@ -77,14 +68,17 @@ const InvitePage = () => {
       </S.Form>
 
       <S.Result>
-        {state.map((item) => (
-          <S.ProfileWrapper onClick={(i) => handleInvite(item)} key={item.id}>
-            {item.profileImageUrl ? (
-              <S.Img src={item.profileImageUrl} />
+        {state.map((userItem) => (
+          <S.ProfileWrapper
+            onClick={(i) => handleInvite(userItem)}
+            key={userItem.id}
+          >
+            {userItem.profileImageUrl ? (
+              <S.Img src={userItem.profileImageUrl} />
             ) : (
               <img width="60px" src={Avatar} />
             )}
-            <S.Name>{item.nickname}</S.Name>
+            <S.Name>{userItem.nickname}</S.Name>
           </S.ProfileWrapper>
         ))}
       </S.Result>

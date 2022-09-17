@@ -5,7 +5,7 @@ export interface Team {
   memberCount: number;
 }
 
-export interface State {
+export interface Content {
   title: string;
   matchType: string;
   sportsCategory: string;

@@ -1,6 +1,6 @@
 export interface Values {
-  username?: string;
-  password?: string;
+  userId: string;
+  password: string;
 }
 
 export interface SuccessResponse {
