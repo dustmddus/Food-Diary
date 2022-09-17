@@ -12,7 +12,7 @@ export const getInvitationList = async () => {
     data: { data },
   } = await axiosAuthInstance.get("/api/teams/invitations", {
     params: {
-      size: 6,
+      size: 10,
       status: "WAITING",
     },
   });

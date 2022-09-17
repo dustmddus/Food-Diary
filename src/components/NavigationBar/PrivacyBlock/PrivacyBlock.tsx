@@ -16,6 +16,7 @@ import Notification from "src/assets/notification_off.png";
 import { Response, Values } from "./type";
 import { userLogout } from "src/apis/auth";
 import { getInvitationList } from "src/apis/invitation";
+import AlarmList from "./AlarmList";
 
 const PrivacyBlock = () => {
   const location = useLocation();
@@ -90,6 +91,10 @@ const PrivacyBlock = () => {
     }
   };
 
+  const getMoreAlarm = () => {
+    navigate("/notification");
+  };
+
   useEffect(() => {
     setKakaoLoading(true);
     async function fetchAddress() {
@@ -125,19 +130,7 @@ const PrivacyBlock = () => {
             <Text size="13px">초대 알림👀</Text>
             <S.Divider />
             {alarm.values.map((item: Values) => (
-              <S.AlarmListWrapper key={item.teamId}>
-                <S.InfoWrapper>
-                  {item.logoImageUrl ? (
-                    <S.Img src={item.logoImageUrl} />
-                  ) : (
-                    <S.Img src={Avatar} />
-                  )}
-                  <S.TextWrapper>
-                    <S.TeamName>{item.name}팀</S.TeamName>
-                    <S.Item>의 초대</S.Item>
-                  </S.TextWrapper>
-                </S.InfoWrapper>
-              </S.AlarmListWrapper>
+              <AlarmList item={item} />
             ))}
             {alarm.values.length !== 0 ? (
               <S.ButtonWrapper>
@@ -147,6 +140,7 @@ const PrivacyBlock = () => {
                     height="25px"
                     fontSize="14px"
                     buttonType="yellow"
+                    onClick={getMoreAlarm}
                   >
                     알림 목록
                   </Button>

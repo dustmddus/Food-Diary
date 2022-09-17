@@ -12,6 +12,7 @@ import TeamCreatePage from "./pages/TeamCreatePage";
 import TeamDetailPage from "./pages/TeamDetailPage";
 import ProposalPage from "./pages/ProposalPage";
 import InvitePage from "./pages/InvitePage";
+import NotificationPage from "./pages/NotificationPage";
 
 const App = () => {
   return (
@@ -50,6 +51,10 @@ const App = () => {
         <Route
           path="/invite/:ID"
           element={<PrivateRoute component={InvitePage} />}
+        />
+        <Route
+          path="/notification"
+          element={<PrivateRoute component={NotificationPage} />}
         />
       </Routes>
       <Footer />
