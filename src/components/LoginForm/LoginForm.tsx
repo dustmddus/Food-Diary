@@ -2,13 +2,12 @@ import * as S from "./LoginForm.style";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { LoginModal, SignUpModal, LocationModal } from "src/recoil/modal";
 import { useForm } from "src/hooks/useForm";
-import { Values, Response, User, ErrorResponse } from "./types";
+import { Values, ErrorResponse } from "./types";
 import { FormEvent } from "react";
-import { axiosAuthInstance } from "src/apis/axiosInstances";
 import { userInfo } from "src/recoil/user";
 import { AxiosError } from "axios";
 import { loginStatus } from "src/recoil/authentication";
-import { userLogin } from "src/apis/auth";
+import { userLogin } from "src/apis/api/auth";
 
 const LoginForm = () => {
   const setUser = useSetRecoilState(userInfo);

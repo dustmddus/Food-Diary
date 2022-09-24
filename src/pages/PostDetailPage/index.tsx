@@ -2,7 +2,6 @@ import * as S from "./PostDetailPage.style";
 import Avatar from "../../assets/avatar.svg";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { axiosAuthInstance } from "src/apis/axiosInstances";
 import { AxiosResponse } from "axios";
 import { PostDetail } from "./type";
 import { useRecoilValue } from "recoil";
@@ -13,7 +12,7 @@ import {
   MATCH_STATUS_DROPDOWN,
   MATCH_STATUS_TEXT,
 } from "src/constants/category";
-import { getPostDetail } from "src/apis/post";
+import { getPostDetail } from "src/apis/api/post";
 
 const PostDetailPage = () => {
   const user = useRecoilValue(userInfo);

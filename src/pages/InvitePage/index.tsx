@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { axiosAuthInstance } from "src/apis/axiosInstances";
+import { useState } from "react";
 import * as S from "./InvitePage.style";
 import { InviteProfile } from "./type";
 import Avatar from "src/assets/avatar.svg";
@@ -7,8 +6,8 @@ import Button from "src/components/Button";
 import { useRecoilValue } from "recoil";
 import { userInfo } from "src/recoil/user";
 import { useParams } from "react-router-dom";
-import { getUserByNickname } from "src/apis/user";
-import { InviteUser } from "src/apis/invitation";
+import { getUserByNickname } from "src/apis/api/user";
+import { InviteUser } from "src/apis/api/invitation";
 
 const InvitePage = () => {
   const param = useParams();

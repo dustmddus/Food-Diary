@@ -14,7 +14,7 @@ import { loginStatus } from "src/recoil/authentication";
 import { userInfo } from "src/recoil/user";
 import { AxiosResponse } from "axios";
 import loading from "src/assets/loading.gif";
-import { getAllPost } from "src/apis/post";
+import { getAllPost } from "src/apis/api/post";
 
 const MainPage = () => {
   const category = useRecoilValue(sportsCategory);

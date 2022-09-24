@@ -3,14 +3,13 @@ import * as S from "./PostListPage.style";
 import PostItem from "src/components/PostItem";
 import { Values } from "./type";
 import { useEffect, useState } from "react";
-import { axiosAuthInstance } from "src/apis/axiosInstances";
 import { useRecoilValue } from "recoil";
 import { sportsCategory } from "src/recoil/category";
 import { userInfo } from "src/recoil/user";
 import { AxiosResponse } from "axios";
 import { Response } from "./type";
 import loading from "src/assets/loading.gif";
-import { getAllPost } from "src/apis/post";
+import { getAllPost } from "src/apis/api/post";
 
 const PostListPage = () => {
   const category = useRecoilValue(sportsCategory);

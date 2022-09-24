@@ -1,4 +1,4 @@
-import { axiosAuthInstance } from "./axiosInstances";
+import { axiosAuthInstance } from "../utils/axiosInstances";
 
 export const InviteUser = async (teamId?: string, userId?: number) => {
   const res = await axiosAuthInstance.post(`/api/teams/${teamId}/invitations`, {

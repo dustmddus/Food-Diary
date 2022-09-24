@@ -1,6 +1,6 @@
 import * as S from "./LocationForm.style";
 import Text from "../Text";
-import { Address, kakaoMapApi } from "../../apis/kakaoMapApi";
+import { Address, kakaoMapApi } from "src/apis/api/kakaoMapApi";
 import { useEffect, useState } from "react";
 import useGeolocation from "react-hook-geolocation";
 import { useRef } from "react";
@@ -8,7 +8,7 @@ import DistanceSlider from "../DistanceSlider";
 import { userInfo, userLocation } from "src/recoil/user";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { LocationModal } from "src/recoil/modal";
-import { axiosAuthInstance } from "src/apis/axiosInstances";
+import { axiosAuthInstance } from "src/apis/utils/axiosInstances";
 import Button from "../Button";
 
 const LocationForm = () => {

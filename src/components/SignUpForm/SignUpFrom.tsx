@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { axiosDefaultInstance } from "src/apis/axiosInstances";
+import { axiosDefaultInstance } from "src/apis/utils/axiosInstances";
 import { useForm } from "src/hooks/useForm";
 import * as S from "./SignUpForm.style";
 import { Values } from "./types";

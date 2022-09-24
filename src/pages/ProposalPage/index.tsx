@@ -1,12 +1,12 @@
 import Dropdown from "src/components/Dropdown";
 import * as S from "./ProposalPage.style";
 import { useEffect, useState } from "react";
-import { axiosAuthInstance } from "src/apis/axiosInstances";
+import { axiosAuthInstance } from "src/apis/utils/axiosInstances";
 import { useNavigate, useParams } from "react-router-dom";
 import { PostDetail } from "../PostDetailPage/type";
 import { validation } from "./validation";
-import { getTeamLeader } from "src/apis/user";
-import { getPostDetail } from "src/apis/post";
+import { getTeamLeader } from "src/apis/api/user";
+import { getPostDetail } from "src/apis/api/post";
 
 interface Team {
   id: number;

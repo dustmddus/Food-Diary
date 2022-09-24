@@ -1,5 +1,5 @@
 import { Response, User } from "src/components/LoginForm/types";
-import { axiosAuthInstance } from "./axiosInstances";
+import { axiosAuthInstance } from "../utils/axiosInstances";
 
 export const userLogin = async (username: string, password: string) => {
   const {

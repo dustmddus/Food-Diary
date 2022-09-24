@@ -1,5 +1,5 @@
 import { Team } from "src/pages/TeamCreatePage/type";
-import { axiosAuthInstance } from "./axiosInstances";
+import { axiosAuthInstance } from "../utils/axiosInstances";
 
 export const getTeamDetail = async (teamId: string) => {
   const {

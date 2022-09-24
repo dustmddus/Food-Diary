@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { axiosAuthInstance } from "src/apis/axiosInstances";
-import { createTeam } from "src/apis/team";
+import { createTeam } from "src/apis/api/team";
 import Button from "src/components/Button";
 import Dropdown from "src/components/Dropdown";
 import {

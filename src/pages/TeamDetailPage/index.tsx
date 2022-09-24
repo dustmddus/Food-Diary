@@ -13,7 +13,7 @@ import { TeamProfile } from "./type";
 import { useRecoilValue } from "recoil";
 import { userInfo } from "src/recoil/user";
 import { SPORTS_CATEGORY_TEXT } from "src/constants/category";
-import { getTeamDetail } from "src/apis/team";
+import { getTeamDetail } from "src/apis/api/team";
 
 const TeamDetailPage = () => {
   const user = useRecoilValue(userInfo);

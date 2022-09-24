@@ -1,4 +1,4 @@
-import { axiosAuthInstance } from "./axiosInstances";
+import { axiosAuthInstance } from "../utils/axiosInstances";
 
 export const getUserByNickname = async (nickname: string) => {
   const {

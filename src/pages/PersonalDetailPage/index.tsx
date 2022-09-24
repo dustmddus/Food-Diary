@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { MatchRecord, PersonalProfile } from "./type";
 import { useRecoilValue } from "recoil";
 import { userInfo } from "src/recoil/user";
-import { getMatchRecord, getUserInfo } from "src/apis/user";
+import { getMatchRecord, getUserInfo } from "src/apis/api/user";
 
 const PersonalDetailPage = () => {
   const user = useRecoilValue(userInfo);

@@ -1,5 +1,5 @@
 import { Content } from "src/pages/PostCreatePage/type";
-import { axiosAuthInstance } from "./axiosInstances";
+import { axiosAuthInstance } from "../utils/axiosInstances";
 
 export const getAllPost = async (category: string, distance?: number) => {
   const data = await axiosAuthInstance.get("/api/matches", {

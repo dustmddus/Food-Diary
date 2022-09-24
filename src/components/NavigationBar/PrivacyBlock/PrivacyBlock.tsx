@@ -4,7 +4,7 @@ import Alarm from "src/assets/alarm.svg";
 import Avatar from "src/assets/avatar.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Text from "src/components/Text";
-import { Address, kakaoMapApi } from "src/apis/kakaoMapApi";
+import { Address, kakaoMapApi } from "src/apis/api/kakaoMapApi";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { LocationModal } from "src/recoil/modal";
 import { loginStatus } from "src/recoil/authentication";
@@ -14,8 +14,8 @@ import useClickAway from "src/hooks/useClickAway";
 import Button from "src/components/Button";
 import Notification from "src/assets/notification_off.png";
 import { Response, Values } from "./type";
-import { userLogout } from "src/apis/auth";
-import { getInvitationList } from "src/apis/invitation";
+import { userLogout } from "src/apis/api/auth";
+import { getInvitationList } from "src/apis/api/invitation";
 import AlarmList from "./AlarmList";
 
 const PrivacyBlock = () => {

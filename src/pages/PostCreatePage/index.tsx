@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import * as React from "react";
 import * as S from "./PostCreatePage.style";
 import Dropdown from "src/components/Dropdown";
-import { axiosAuthInstance } from "src/apis/axiosInstances";
 import {
   SPORTS_CATEGORY_DROPDOWN,
   SPORTS_CATEGORY_TEXT,
@@ -12,8 +11,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { validation } from "./validation";
 import { useNavigate } from "react-router-dom";
 import Button from "src/components/Button";
-import { getTeamLeader } from "src/apis/user";
-import { createPost } from "src/apis/post";
+import { getTeamLeader } from "src/apis/api/user";
+import { createPost } from "src/apis/api/post";
 
 const teamDropdownItem = (teams: Team[]) =>
   teams.map(({ id, name, sportsCategory, memberCount }, idx) => ({
