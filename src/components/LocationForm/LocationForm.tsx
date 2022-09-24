@@ -6,7 +6,7 @@ import useGeolocation from "react-hook-geolocation";
 import { useRef } from "react";
 import DistanceSlider from "../DistanceSlider";
 import { userInfo, userLocation } from "src/recoil/user";
-import { useRecoilState, useResetRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { LocationModal } from "src/recoil/modal";
 import { axiosAuthInstance } from "src/apis/axiosInstances";
 import Button from "../Button";

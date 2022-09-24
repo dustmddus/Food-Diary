@@ -51,7 +51,6 @@ const PrivacyBlock = () => {
   const ref = useClickAway(() => {
     setShowAlarm(false);
     setShowProfile(false);
-    setOpenLocationModal(false);
   });
 
   const setDistance = () => {
